@@ -8,16 +8,18 @@ import './style.sass';
 
 export default class AddEvent extends Component {
     render() {
+        const { h2, color, type } = this.props;
+
         return (
             <Page>
                 <div className="add-event">
-                    <h2>Добавить ошибку</h2>
+                    <h2>{h2}</h2>
                     <InputForm />
                     <div className="list">
-                        <ListItem />
-                        <ListItem />
-                        <ListItem />
-                        <ListItem />
+                        <ListItem color={color} type={type} />
+                        <ListItem color={color} />
+                        <ListItem color={color} />
+                        <ListItem color={color} />
                     </div>
                 </div>
             </Page>

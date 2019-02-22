@@ -1,5 +1,16 @@
+@import '../../constants/constants.sass'
+
 .list-item
   margin: 10px 0
   padding: 10px
   font-size: 18px
-  background: red
+  &--error
+    background: $error
+    color: $white
+  &--check
+    background: $check
+    color: $white
+.list-item__checklist
+  &:hover
+    background: $check
+    cursor: pointer
