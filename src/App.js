@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 
+import Page from './UI/Page'
+
 import AddEvent from './components/AddEvent'
 
 export default class App extends Component {
   render() {
     return (
       <div className="app">
-        <h1>Название задачи</h1>
+          <div className="background" />
+        <Page>
+          <h1>Название задачи</h1>
+        </Page>
+
         <section>
           <main>
             <AddEvent />
