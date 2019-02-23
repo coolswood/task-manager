@@ -15,7 +15,6 @@ export default class ListItem extends Component {
         }
 
         if(type === 'mistakes') {
-            console.log(value)
             return (
                 <div className={`list-item list-item__${type}`} onClick={this.toggleState}>
                     <span className="mistake-cnt">{value.cnt}</span>

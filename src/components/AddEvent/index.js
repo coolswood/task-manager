@@ -12,7 +12,7 @@ export default class AddEvent extends Component {
         return (
             <div className="add-event">
                 <h2>{h2}</h2>
-                {type !== 'mistakes' && <InputForm />}
+                {type !== 'mistakes' && <InputForm type={type} />}
                 {data.length !== 0 ?
                     <div className="list">
                         {data.map((item, id) => {

@@ -35,11 +35,52 @@ export default class App extends Component {
         }
     };
 
+    addNewMistake = (text) => {
+        const { thisTask, commonData } = this.state;
+
+        // Добавить ошибку
+        let data = {...thisTask, thisErrorList: [...thisTask.thisErrorList, text]};
+
+        // Добавить общую ошибку
+
+        let newErrors = {};
+
+        commonData.errors.map((item, id) => {
+            if(text === item.name) {
+                let itemError = commonData.errors;
+                itemError[id].cnt ++;
+                newErrors = {...commonData, errors: itemError}
+            }
+            else {
+                newErrors = {...commonData, errors: [...commonData.errors, {name: text, cnt: 1}]}
+            }
+        });
+
+        this.setState({
+            thisTask: data,
+            commonData: newErrors
+        })
+    };
+
+    addNewFind = (text) => {
+        const { thisTask } = this.state;
+
+        let data = {...thisTask, thisFindList: [...thisTask.thisFindList, text]};
+
+        this.setState({
+            thisTask: data
+        })
+    }
+
   render() {
       const { thisTask, commonData } = this.state;
 
     return (
-        <Context.Provider value = {this.state}>
+        <Context.Provider value = {{
+            ...this.state,
+            addNewMistake: this.addNewMistake,
+            addNewFind: this.addNewFind
+        }}>
             <div className="background" />
             <div className="app">
                 <Header />
@@ -48,6 +89,7 @@ export default class App extends Component {
                         <Page>
                             <AddEvent
                                 h2="Добавить ошибку"
+                                type='ordinar'
                                 color={'error'}
                                 data={thisTask.thisErrorList}
                             />
@@ -55,6 +97,7 @@ export default class App extends Component {
                         <Page>
                             <AddEvent
                                 h2="Нашел ошибку"
+                                type='ordinarFind'
                                 color={'check'}
                                 data={thisTask.thisFindList}
                             />
