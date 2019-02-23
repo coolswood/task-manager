@@ -8483,7 +8483,7 @@ prop-types-extra@^1.1.0:
     react-is "^16.3.2"
     warning "^3.0.0"
 
-prop-types@^15.6.1:
+prop-types@^15.6.0, prop-types@^15.6.1:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -8847,6 +8847,13 @@ react-scripts@2.1.5:
     workbox-webpack-plugin "3.6.3"
   optionalDependencies:
     fsevents "1.2.4"
+
+react-timer@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-timer/-/react-timer-1.1.0.tgz#0a79f5cf85b5b94bcbb3877d28bd6af4083b7c38"
+  integrity sha512-dPZ6u4hh5LI5GO7xNf4eDOMIEUv2+Zf83rbGbHfj+jsmsj9L18GZOkn4uyP4F0XusuoVqHRQWIwBh533iOgEaw==
+  dependencies:
+    prop-types "^15.6.0"
 
 react-transition-group@^2.5.1:
   version "2.5.3"

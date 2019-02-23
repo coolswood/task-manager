@@ -1,16 +1,36 @@
 @import '../../constants/constants.sass'
 
-.list-item
-  margin: 10px 0
-  padding: 10px
-  font-size: 18px
-  &--error
-    background: $error
-    color: $white
-  &--check
-    background: $check
-    color: $white
-.list-item__checklist
-  &:hover
-    background: $check
-    cursor: pointer
+.add-event
+
+  .list-item
+    margin: 10px 0
+    padding: 10px
+    font-size: 18px
+
+    &--error
+      background: $error
+      color: $white
+
+    &--check
+      background: $check
+      color: $white
+
+  .list-item__checklist
+    &:hover
+      background: $check
+      cursor: pointer
+
+  .list-item__mistakes
+    display: flex
+    align-items: center
+
+    .mistake-cnt
+      width: 35px
+      height: 35px
+      border-radius: 50%
+      display: flex
+      justify-content: center
+      align-items: center
+      color: $white
+      background: red
+      margin-right: 10px
