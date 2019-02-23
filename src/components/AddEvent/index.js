@@ -13,17 +13,21 @@ export default class AddEvent extends Component {
             <div className="add-event">
                 <h2>{h2}</h2>
                 {type !== 'mistakes' && <InputForm />}
-                <div className="list">
-                    {data.map((item, id) => {
-                        return <ListItem
-                            value={item}
-                            color={color}
-                            type={type}
-                            key={id}
-                            id={id + 1}
-                        />
-                    })}
-                </div>
+                {data.length !== 0 ?
+                    <div className="list">
+                        {data.map((item, id) => {
+                            return <ListItem
+                                value={item}
+                                color={color}
+                                type={type}
+                                key={id}
+                                id={id + 1}
+                            />
+                        })}
+                    </div> :
+                    <div>Нету</div>
+                }
+
             </div>
         );
     }

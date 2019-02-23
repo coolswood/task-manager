@@ -1,24 +1,14 @@
 import React, {Component} from 'react';
 
 export default class ListItem extends Component {
-    state = {
-        checked: false
-    };
-
-    toggleState = () => {
-        this.setState({
-            checked: !this.state.checked
-        })
-    };
 
     render() {
         const { type, color, value, id } = this.props;
-        const { checked } = this.state;
 
         if(type === 'checklist') {
             return (
-                <div className={`list-item list-item__${type}`} onClick={this.toggleState}>
-                    <span hidden={!checked} className="check-sign">✔ </span>
+                <div className={`list-item list-item__${type}`}>
+                    <span hidden={!value.checked} className="check-sign">✔ </span>
                     <span>{value.name}</span>
                 </div>
             )

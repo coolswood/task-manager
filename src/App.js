@@ -13,27 +13,19 @@ export default class App extends Component {
     state = {
         thisTask: {
             h1: "Заголовок задачи",
-            thisErrorList: [
-                'Ошибка',
-                'Ошибка',
-                'Ошибка'
-            ],
-            thisFindList: [
-                'Нашел',
-                'Нашел',
-                'Нашел'
-            ],
+            thisErrorList: [],
+            thisFindList: [],
             checklist: [
-                {name: 'Задача', complite: true},
-                {name: 'Задача', complite: true},
-                {name: 'Задача', complite: false}
+                {name: 'Задача', checked: true},
+                {name: 'Задача', checked: true},
+                {name: 'Задача', checked: false}
             ]
         },
         commonData: {
             checklist: [
-                {name: 'Задача', complite: true},
-                {name: 'Задача', complite: true},
-                {name: 'Задача', complite: false}
+                {name: 'Задача', checked: true},
+                {name: 'Задача', checked: true},
+                {name: 'Задача', checked: false}
             ],
             errors: [
                 {name: 'Ошибка', cnt: 1},
