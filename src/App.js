@@ -6,11 +6,18 @@ import { Tabs, Tab, Button } from 'react-bootstrap';
 
 import AddEvent from './components/AddEvent'
 import Header from './components/Header'
+import Nav from './components/Nav'
 
 import {Context} from './context';
 
 export default class App extends Component {
     state = {
+        allHeaders: [
+            "Заголовок задачи",
+            "Заголовок задачи",
+            "Заголовок задачи",
+            "Заголовок задачи"
+        ],
         thisTask: {
             h1: "Заголовок задачи",
             thisErrorList: [],
@@ -113,7 +120,7 @@ export default class App extends Component {
     };
 
   render() {
-      const { thisTask, commonData } = this.state;
+      const { thisTask, commonData, allHeaders } = this.state;
 
     return (
         <Context.Provider value = {{
@@ -126,6 +133,7 @@ export default class App extends Component {
         }}>
             <div className="background" />
             <div className="app">
+                <Nav headers={allHeaders} />
                 <Header />
                 <section>
                     <main>
