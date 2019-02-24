@@ -14,16 +14,24 @@ export default class Index extends Component {
     }
 
     submit = () => {
-        const { addNewMistake, addNewFind } = this.context;
-        const { type } = this.props;
+        const { addNewMistake, addNewFind, addLocalChecklist, addCommonChecklist } = this.context;
+        const { id } = this.props;
         let text = this.input.current.value;
 
-        switch (type) {
-            case 'ordinar':
-                addNewMistake(text)
+        if(text === '') return;
+
+        switch (id) {
+            case 'addMistake':
+                addNewMistake(text);
                 break;
-            case 'ordinarFind':
-                addNewFind(text)
+            case 'findMistake':
+                addNewFind(text);
+                break;
+            case 'localChecklist':
+                addLocalChecklist(text);
+                break;
+            case 'commonChecklist':
+                addCommonChecklist(text);
                 break;
         }
 
@@ -31,13 +39,17 @@ export default class Index extends Component {
     };
 
     render() {
+        const { commonData } = this.context;
+        const { id } = this.props;
+
         return (
             <div className="form">
                 <div className="data-list-wrapper">
-                    <input ref={this.input} />
-                    <datalist id="<идентификатор>">
-                        <option value="Текст1" />
-                        <option value="Текст2" />
+                    <input list={id === 'addMistake' ? 'list' : ''} ref={this.input} />
+                    <datalist id="list">
+                        {Object.keys(commonData.errors).map((item) => {
+                            return <option value={item} key={item} />
+                        })}
                     </datalist>
                 </div>
                 <Button variant="outline-primary" onClick={this.submit}>Добавить</Button>

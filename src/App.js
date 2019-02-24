@@ -15,23 +15,11 @@ export default class App extends Component {
             h1: "Заголовок задачи",
             thisErrorList: [],
             thisFindList: [],
-            checklist: [
-                {name: 'Задача', checked: true},
-                {name: 'Задача', checked: true},
-                {name: 'Задача', checked: false}
-            ]
+            checklist: {}
         },
         commonData: {
-            checklist: [
-                {name: 'Задача', checked: true},
-                {name: 'Задача', checked: true},
-                {name: 'Задача', checked: false}
-            ],
-            errors: [
-                {name: 'Ошибка', cnt: 1},
-                {name: 'Ошибка', cnt: 10},
-                {name: 'Ошибка', cnt: 5}
-            ]
+            checklist: {},
+            errors: {}
         }
     };
 
@@ -43,22 +31,28 @@ export default class App extends Component {
 
         // Добавить общую ошибку
 
-        let newErrors = {};
+        let newDate = {};
 
-        commonData.errors.map((item, id) => {
-            if(text === item.name) {
-                let itemError = commonData.errors;
-                itemError[id].cnt ++;
-                newErrors = {...commonData, errors: itemError}
-            }
-            else {
-                newErrors = {...commonData, errors: [...commonData.errors, {name: text, cnt: 1}]}
-            }
-        });
+        if(!commonData.errors[text]) {
+            let data = {...commonData.errors, [text]: 1};
+            newDate = {...commonData, errors: data}
+        } else {
+            let data = {...commonData.errors, [text]: commonData.errors[text] + 1};
+            let sorted = Object.keys(data).sort(function (a, b) {
+                return data[b] - data[a]
+            });
+
+            let mewObj = {};
+            sorted.map((item) => {
+                mewObj[item] = data[item]
+            });
+            console.log(mewObj)
+            newDate = {...commonData, errors: mewObj}
+        }
 
         this.setState({
             thisTask: data,
-            commonData: newErrors
+            commonData: newDate
         })
     };
 
@@ -70,7 +64,53 @@ export default class App extends Component {
         this.setState({
             thisTask: data
         })
-    }
+    };
+
+    addLocalChecklist = (text) => {
+        const { thisTask } = this.state;
+
+        let data = {...thisTask, checklist: {...thisTask.checklist, [text]: false}};
+
+        this.setState({
+            thisTask: data
+        })
+    };
+
+    toggleChecklist = (text, id) => {
+        const { thisTask, commonData } = this.state;
+
+        let data = {};
+
+        if(id === 'localChecklist') {
+            let toggled = thisTask.checklist;
+            toggled[text] = !toggled[text];
+
+            data = {...thisTask, toggled};
+
+            this.setState({
+                thisTask: data
+            })
+        } else {
+            let toggled = commonData.checklist;
+            toggled[text] = !toggled[text];
+
+            data = {...commonData, toggled};
+
+            this.setState({
+                commonData: data
+            })
+        }
+    };
+
+    addCommonChecklist = (text) => {
+        const { commonData } = this.state;
+
+        let data = {...commonData, checklist: {...commonData.checklist, [text]: false}};
+
+        this.setState({
+            commonData: data
+        })
+    };
 
   render() {
       const { thisTask, commonData } = this.state;
@@ -79,7 +119,10 @@ export default class App extends Component {
         <Context.Provider value = {{
             ...this.state,
             addNewMistake: this.addNewMistake,
-            addNewFind: this.addNewFind
+            addNewFind: this.addNewFind,
+            addLocalChecklist: this.addLocalChecklist,
+            addCommonChecklist: this.addCommonChecklist,
+            toggleChecklist: this.toggleChecklist
         }}>
             <div className="background" />
             <div className="app">
@@ -90,6 +133,7 @@ export default class App extends Component {
                             <AddEvent
                                 h2="Добавить ошибку"
                                 type='ordinar'
+                                id="addMistake"
                                 color={'error'}
                                 data={thisTask.thisErrorList}
                             />
@@ -97,7 +141,8 @@ export default class App extends Component {
                         <Page>
                             <AddEvent
                                 h2="Нашел ошибку"
-                                type='ordinarFind'
+                                type='ordinar'
+                                id="findMistake"
                                 color={'check'}
                                 data={thisTask.thisFindList}
                             />
@@ -110,6 +155,7 @@ export default class App extends Component {
                                     <AddEvent
                                         h2="Checklist задачи"
                                         type="checklist"
+                                        id="localChecklist"
                                         data={thisTask.checklist}
                                     />
                                 </Tab>
@@ -117,6 +163,7 @@ export default class App extends Component {
                                     <AddEvent
                                         h2="Checklist"
                                         type="checklist"
+                                        id="commonChecklist"
                                         data={commonData.checklist}
                                     />
                                 </Tab>
