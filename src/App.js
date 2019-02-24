@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
 
+import api from './helpers/api.js'
+
 import Page from './UI/Page'
 
 import { Tabs, Tab, Button } from 'react-bootstrap';
@@ -29,6 +31,19 @@ export default class App extends Component {
             errors: {}
         }
     };
+
+    componentDidMount() {
+        const { thisTask } = this.state;
+
+    }
+
+    // api
+
+    updateCommonData = (data) => {
+        api(`http://localhost:9000/newCommonData`, data);
+    };
+
+    // api
 
     changeH1 = (text) => {
         const { thisTask } = this.state;
@@ -74,9 +89,11 @@ export default class App extends Component {
             sorted.map((item) => {
                 mewObj[item] = data[item]
             });
-            console.log(mewObj)
+
             newDate = {...commonData, errors: mewObj}
         }
+
+        this.updateCommonData(newDate)
 
         this.setState({
             thisTask: data,
