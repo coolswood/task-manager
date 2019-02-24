@@ -19,7 +19,7 @@ export default class App extends Component {
             "Заголовок задачи"
         ],
         thisTask: {
-            h1: "Заголовок задачи",
+            h1: "Напишите название",
             thisErrorList: [],
             thisFindList: [],
             checklist: {}
@@ -28,6 +28,27 @@ export default class App extends Component {
             checklist: {},
             errors: {}
         }
+    };
+
+    changeH1 = (text) => {
+        const { thisTask } = this.state;
+
+        let data = {...thisTask, h1: text};
+
+        this.setState({
+            thisTask: data
+        })
+    };
+
+    createNewTask = () => {
+        this.setState({
+            thisTask: {
+                h1: "Напишите название",
+                thisErrorList: [],
+                thisFindList: [],
+                checklist: {}
+            }
+        })
     };
 
     addNewMistake = (text) => {
@@ -129,7 +150,9 @@ export default class App extends Component {
             addNewFind: this.addNewFind,
             addLocalChecklist: this.addLocalChecklist,
             addCommonChecklist: this.addCommonChecklist,
-            toggleChecklist: this.toggleChecklist
+            toggleChecklist: this.toggleChecklist,
+            changeH1: this.changeH1,
+            createNewTask: this.createNewTask
         }}>
             <div className="background" />
             <div className="app">
