@@ -22,6 +22,7 @@ app.post('/', (req, res) => {
     let sendData = {};
 
     jsonfile.readFile('./data/tasks.json', (err, data) => {
+
         sendData['task'] = data[name];
 
         jsonfile.readFile('./data/common.json', (err, data) => {
@@ -29,6 +30,34 @@ app.post('/', (req, res) => {
             return res.send(sendData)
         });
     });
+});
+
+app.post('/updateH1', async (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
+
+    let newData = {};
+
+    await jsonfile.readFile('./data/tasks.json', (err, data) => {
+        let updatedData = {...data, [req.body.h1]: req.body};
+
+        jsonfile.writeFile('./data/tasks.json', updatedData, 'utf8', () => {
+            newData['task'] = req.body;
+            return newData
+        });
+    });
+
+    await jsonfile.readFile('./data/common.json', (err, data) => {
+        let mass = [...data.commonData, req.body.h1];
+        let updatedData = {...data, mass};
+
+        jsonfile.writeFile('./data/common.json', updatedData, 'utf8', () => {
+            newData['common'] = req.body;
+            return newData
+        });
+    });
+
+    return res.send(newData)
 });
 
 app.post('/newCommonData', function (req, res) {
@@ -50,8 +79,6 @@ app.post('/newThisData', function (req, res) {
             res.send(req.body)
         });
     });
-
-
 });
 
 app.listen(8080, function () {

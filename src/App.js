@@ -46,6 +46,12 @@ export default class App extends Component {
         api(`http://localhost:8080/newThisData`, data);
     };
 
+    updateH1 = (data) => {
+        api(`http://localhost:8080/updateH1`, data).then((data) => {
+            console.log(data)
+        });
+    };
+
     // api
 
     changeH1 = (text) => {
@@ -53,7 +59,7 @@ export default class App extends Component {
 
         let data = {...thisTask, h1: text};
 
-        this.updateThisData(data);
+        this.updateH1(data);
 
         this.setState({
             thisTask: data
