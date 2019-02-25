@@ -48,7 +48,19 @@ export default class App extends Component {
 
     updateH1 = (data) => {
         api(`http://localhost:8080/updateH1`, data).then((data) => {
-            console.log(data)
+            this.setState({
+                thisTask: data.task,
+                commonData: data.common
+            })
+        });
+    };
+
+    changeTask = (text) => {
+        api(`http://localhost:8080/`, {name: text}).then((data) => {
+            this.setState({
+                thisTask: data.task,
+                commonData: data.common
+            })
         });
     };
 
@@ -192,7 +204,8 @@ export default class App extends Component {
             addCommonChecklist: this.addCommonChecklist,
             toggleChecklist: this.toggleChecklist,
             changeH1: this.changeH1,
-            createNewTask: this.createNewTask
+            createNewTask: this.createNewTask,
+            changeTask: this.changeTask
         }}>
             <div className="background" />
             <div className="app">
@@ -221,7 +234,7 @@ export default class App extends Component {
                     </main>
                     <aside>
                         <Page>
-                            <Tabs defaultActiveKey="checklist">
+                            <Tabs defaultActiveKey="thisChecklist">
                                 <Tab eventKey="thisChecklist" title="Checklist задачи">
                                     <AddEvent
                                         h2="Checklist задачи"

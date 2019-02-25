@@ -2,7 +2,10 @@ import React, { Component, Fragment } from 'react';
 
 import './style.sass';
 
+import {Context} from '../../context';
+
 export default class Nav extends Component {
+    static contextType = Context;
 
     state = {
         open: false
@@ -12,6 +15,12 @@ export default class Nav extends Component {
         this.setState({
             open: !this.state.open
         })
+    };
+
+    changeTask = (text) => {
+        const { changeTask } = this.context;
+
+        changeTask(text)
     };
 
     render() {
@@ -25,7 +34,7 @@ export default class Nav extends Component {
                     <div className="burger-close" onClick={this.toggleMenu}></div>
                     <div className="wrap">
                         {headers && headers.map((item) => {
-                            return <button className="nav-item">{item}</button>
+                            return <button className="nav-item" onClick={() => this.changeTask(item)}>{item}</button>
                         })}
                     </div>
                 </nav>
