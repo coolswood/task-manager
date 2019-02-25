@@ -14,12 +14,6 @@ import {Context} from './context';
 
 export default class App extends Component {
     state = {
-        allHeaders: [
-            "Заголовок задачи",
-            "Заголовок задачи",
-            "Заголовок задачи",
-            "Заголовок задачи"
-        ],
         thisTask: {
             h1: "Напишите название",
             thisErrorList: [],
@@ -27,20 +21,29 @@ export default class App extends Component {
             checklist: {}
         },
         commonData: {
+            allHeaders: [],
             checklist: {},
             errors: {}
         }
     };
 
     componentDidMount() {
-        const { thisTask } = this.state;
-
+        api(`http://localhost:8080/`, {name: "test"}).then((data) => {
+            this.setState({
+                thisTask: data.task,
+                commonData: data.common
+            })
+        });
     }
 
     // api
 
     updateCommonData = (data) => {
-        api(`http://localhost:9000/newCommonData`, data);
+        api(`http://localhost:8080/newCommonData`, data);
+    };
+
+    updateThisData = (data) => {
+        api(`http://localhost:8080/newThisData`, data);
     };
 
     // api
@@ -49,6 +52,8 @@ export default class App extends Component {
         const { thisTask } = this.state;
 
         let data = {...thisTask, h1: text};
+
+        this.updateThisData(data);
 
         this.setState({
             thisTask: data
@@ -72,6 +77,8 @@ export default class App extends Component {
         // Добавить ошибку
         let data = {...thisTask, thisErrorList: [...thisTask.thisErrorList, text]};
 
+        this.updateThisData(data);
+
         // Добавить общую ошибку
 
         let newDate = {};
@@ -93,7 +100,7 @@ export default class App extends Component {
             newDate = {...commonData, errors: mewObj}
         }
 
-        this.updateCommonData(newDate)
+        this.updateCommonData(newDate);
 
         this.setState({
             thisTask: data,
@@ -106,6 +113,8 @@ export default class App extends Component {
 
         let data = {...thisTask, thisFindList: [...thisTask.thisFindList, text]};
 
+        this.updateThisData(data);
+
         this.setState({
             thisTask: data
         })
@@ -115,6 +124,8 @@ export default class App extends Component {
         const { thisTask } = this.state;
 
         let data = {...thisTask, checklist: {...thisTask.checklist, [text]: false}};
+
+        this.updateThisData(data);
 
         this.setState({
             thisTask: data
@@ -132,6 +143,8 @@ export default class App extends Component {
 
             data = {...thisTask, toggled};
 
+            this.updateThisData(data);
+
             this.setState({
                 thisTask: data
             })
@@ -140,6 +153,8 @@ export default class App extends Component {
             toggled[text] = !toggled[text];
 
             data = {...commonData, toggled};
+
+            this.updateCommonData(data);
 
             this.setState({
                 commonData: data
@@ -152,13 +167,15 @@ export default class App extends Component {
 
         let data = {...commonData, checklist: {...commonData.checklist, [text]: false}};
 
+        this.updateCommonData(data);
+
         this.setState({
             commonData: data
         })
     };
 
   render() {
-      const { thisTask, commonData, allHeaders } = this.state;
+      const { thisTask, commonData } = this.state;
 
     return (
         <Context.Provider value = {{
@@ -173,7 +190,7 @@ export default class App extends Component {
         }}>
             <div className="background" />
             <div className="app">
-                <Nav headers={allHeaders} />
+                <Nav headers={commonData.allHeaders} />
                 <Header />
                 <section>
                     <main>

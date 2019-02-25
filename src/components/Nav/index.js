@@ -24,7 +24,7 @@ export default class Nav extends Component {
                 <nav className={`main-nav ${open ? 'nav-opened' : ''}`}>
                     <div className="burger-close" onClick={this.toggleMenu}></div>
                     <div className="wrap">
-                        {headers.map((item) => {
+                        {headers && headers.map((item) => {
                             return <button className="nav-item">{item}</button>
                         })}
                     </div>
