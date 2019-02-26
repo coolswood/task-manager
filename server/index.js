@@ -49,13 +49,21 @@ app.post('/updateH1', (req, res) => {
     let newData = {};
 
     jsonfile.readFile('./data/tasks.json', (err, data) => {
-        let updatedData = {...data, [req.body.h1]: req.body};
+        let save = {[req.body.newData.h1]: req.body.newData};
+        delete data[req.body.oldText];
+        let updatedData = {...data, save};
 
         jsonfile.writeFile('./data/tasks.json', updatedData, 'utf8', () => {
-            newData['task'] = req.body;
+            newData['task'] = req.body.newData;
 
             jsonfile.readFile('./data/common.json', (err, cData) => {
-                let updatedCommonData = {...cData, allHeaders: [...cData.allHeaders, req.body.h1]};
+                let updatedCommonData = {};
+
+                if(cData.allHeaders.indexOf(req.body.newData.h1) === -1) {
+                    updatedCommonData = {...cData, allHeaders: [...cData.allHeaders, req.body.newData.h1]};
+                } else {
+                    updatedCommonData = cData;
+                }
 
                 jsonfile.writeFile('./data/common.json', updatedCommonData, 'utf8', () => {
                     newData['common'] = updatedCommonData;

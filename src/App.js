@@ -46,8 +46,8 @@ export default class App extends Component {
         api(`http://localhost:8080/newThisData`, data);
     };
 
-    updateH1 = (data) => {
-        api(`http://localhost:8080/updateH1`, data).then((data) => {
+    updateH1 = (data, oldText) => {
+        api(`http://localhost:8080/updateH1`, {newData: data, oldText: oldText}).then((data) => {
             this.setState({
                 thisTask: data.task,
                 commonData: data.common
@@ -68,10 +68,11 @@ export default class App extends Component {
 
     changeH1 = (text) => {
         const { thisTask } = this.state;
+        let oldText = thisTask.h1;
 
         let data = {...thisTask, h1: text};
 
-        this.updateH1(data);
+        this.updateH1(data, oldText);
 
         this.setState({
             thisTask: data
