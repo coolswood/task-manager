@@ -28,7 +28,7 @@ export default class App extends Component {
     };
 
     componentDidMount() {
-        api(`http://localhost:8080/`, {name: "test"}).then((data) => {
+        api(`http://localhost:8080/`, {name: ''}).then((data) => {
             this.setState({
                 thisTask: data.task,
                 commonData: data.common

@@ -14,9 +14,9 @@ export default class AddEvent extends Component {
                 <h2>{h2}</h2>
                 {type !== 'mistakes' && <InputForm type={type} id={id} />}
 
-                {data.length === 0 && <div>Нету</div>}
+                {(!data || data.length === 0) && <div>Нету</div>}
 
-                {type === 'ordinar' &&
+                {!!data && type === 'ordinar' &&
                     <div className="list">
                         {data.map((item, i) => {
                             return <ListItem
@@ -31,7 +31,7 @@ export default class AddEvent extends Component {
                     </div>
                 }
 
-                {type !== 'ordinar' &&
+                {!!data && type !== 'ordinar' &&
                     <div className="list">
                         {Object.keys(data).map((item, i) => {
                             return <ListItem

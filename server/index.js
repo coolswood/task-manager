@@ -24,18 +24,27 @@ app.post('/', (req, res) => {
     jsonfile.readFile('./data/tasks.json', (err, data) => {
 
         if(!data || !data[name]) {
-            sendData['task'] = {
+            sendData['task'] = {"Напишите название": {
                 h1: "Напишите название",
                 thisErrorList: [],
                 thisFindList: [],
                 checklist: {}
-            };
+            }};
         } else {
             sendData['task'] = data[name];
         }
 
         jsonfile.readFile('./data/common.json', (err, data) => {
-            sendData['common'] = data;
+
+            if(!data) {
+                sendData['common'] = {
+                    allHeaders: [],
+                    checklist: {},
+                    errors: {}
+                }
+            } else {
+                sendData['common'] = data;
+            }
 
             return res.send(sendData)
         });
@@ -59,10 +68,18 @@ app.post('/updateH1', (req, res) => {
             jsonfile.readFile('./data/common.json', (err, cData) => {
                 let updatedCommonData = {};
 
-                if(cData.allHeaders.indexOf(req.body.newData.h1) === -1) {
-                    updatedCommonData = {...cData, allHeaders: [...cData.allHeaders, req.body.newData.h1]};
+                if(!cData) {
+                    newData['common'] = {
+                        allHeaders: [req.body.newData.h1],
+                        checklist: {},
+                        errors: {}
+                    }
                 } else {
-                    updatedCommonData = cData;
+                    if(cData.allHeaders.indexOf(req.body.newData.h1) === -1) {
+                        updatedCommonData = {...cData, allHeaders: [...cData.allHeaders, req.body.newData.h1]};
+                    } else {
+                        updatedCommonData = cData;
+                    }
                 }
 
                 jsonfile.writeFile('./data/common.json', updatedCommonData, 'utf8', () => {
