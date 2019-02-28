@@ -13,7 +13,8 @@ export default class Index extends Component {
         this.input = React.createRef();
     }
 
-    submit = () => {
+    submit = (e) => {
+        e.preventDefault();
         const { addNewMistake, addNewFind, addLocalChecklist, addCommonChecklist } = this.context;
         const { id } = this.props;
         let text = this.input.current.value;
@@ -43,7 +44,7 @@ export default class Index extends Component {
         const { id } = this.props;
 
         return (
-            <div className="form">
+            <form className="form" onSubmit={this.submit}>
                 <div className="data-list-wrapper">
                     <input list={id === 'addMistake' ? 'list' : ''} ref={this.input} />
                     <datalist id="list">
@@ -52,8 +53,8 @@ export default class Index extends Component {
                         })}
                     </datalist>
                 </div>
-                <Button variant="outline-primary" onClick={this.submit}>Добавить</Button>
-            </div>
+                <Button type="submit" variant="outline-primary">Добавить</Button>
+            </form>
         );
     }
 }

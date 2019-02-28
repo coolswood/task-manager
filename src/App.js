@@ -1,6 +1,7 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
 import api from './helpers/api.js'
+import { getData, updateCommonData, updateThisData, updateH1, changeTask } from './api'
 
 import Page from './UI/Page'
 
@@ -28,26 +29,24 @@ export default class App extends Component {
     };
 
     componentDidMount() {
-        api(`http://localhost:8080/`, {name: ''}).then((data) => {
-            this.setState({
-                thisTask: data.task,
-                commonData: data.common
-            })
-        });
+
+        let taskName = localStorage.getItem('currentTask');
+
+        if(taskName) {
+            getData(taskName).then((data) => {
+                localStorage.setItem('currentTask', this.state.thisTask.h1);
+                this.setState({
+                    thisTask: data.task,
+                    commonData: data.common
+                })
+            });
+        }
     }
 
-    // api
-
-    updateCommonData = (data) => {
-        api(`http://localhost:8080/newCommonData`, data);
-    };
-
-    updateThisData = (data) => {
-        api(`http://localhost:8080/newThisData`, data);
-    };
-
     updateH1 = (data, oldText) => {
-        api(`http://localhost:8080/updateH1`, {newData: data, oldText: oldText}).then((data) => {
+        localStorage.setItem('currentTask', data.h1);
+
+        updateH1(data, oldText).then((data) => {
             this.setState({
                 thisTask: data.task,
                 commonData: data.common
@@ -56,7 +55,9 @@ export default class App extends Component {
     };
 
     changeTask = (text) => {
-        api(`http://localhost:8080/`, {name: text}).then((data) => {
+        changeTask(text).then((data) => {
+            localStorage.setItem('currentTask', text);
+
             this.setState({
                 thisTask: data.task,
                 commonData: data.common
@@ -96,7 +97,7 @@ export default class App extends Component {
         // Добавить ошибку
         let data = {...thisTask, thisErrorList: [...thisTask.thisErrorList, text]};
 
-        this.updateThisData(data);
+        updateThisData(data);
 
         // Добавить общую ошибку
 
@@ -119,7 +120,7 @@ export default class App extends Component {
             newDate = {...commonData, errors: mewObj}
         }
 
-        this.updateCommonData(newDate);
+        updateCommonData(newDate);
 
         this.setState({
             thisTask: data,
@@ -132,7 +133,7 @@ export default class App extends Component {
 
         let data = {...thisTask, thisFindList: [...thisTask.thisFindList, text]};
 
-        this.updateThisData(data);
+        updateThisData(data);
 
         this.setState({
             thisTask: data
@@ -144,7 +145,7 @@ export default class App extends Component {
 
         let data = {...thisTask, checklist: {...thisTask.checklist, [text]: false}};
 
-        this.updateThisData(data);
+        updateThisData(data);
 
         this.setState({
             thisTask: data
@@ -162,7 +163,7 @@ export default class App extends Component {
 
             data = {...thisTask, toggled};
 
-            this.updateThisData(data);
+            updateThisData(data);
 
             this.setState({
                 thisTask: data

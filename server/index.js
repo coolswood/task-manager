@@ -24,12 +24,12 @@ app.post('/', (req, res) => {
     jsonfile.readFile('./data/tasks.json', (err, data) => {
 
         if(!data || !data[name]) {
-            sendData['task'] = {"Напишите название": {
+            sendData['task'] = {
                 h1: "Напишите название",
                 thisErrorList: [],
                 thisFindList: [],
                 checklist: {}
-            }};
+            };
         } else {
             sendData['task'] = data[name];
         }
@@ -59,8 +59,8 @@ app.post('/updateH1', (req, res) => {
 
     jsonfile.readFile('./data/tasks.json', (err, data) => {
         let save = {[req.body.newData.h1]: req.body.newData};
-        delete data[req.body.oldText];
-        let updatedData = {...data, save};
+        // delete data[req.body.oldText];
+        let updatedData = {...data, ...save};
 
         jsonfile.writeFile('./data/tasks.json', updatedData, 'utf8', () => {
             newData['task'] = req.body.newData;
@@ -69,7 +69,7 @@ app.post('/updateH1', (req, res) => {
                 let updatedCommonData = {};
 
                 if(!cData) {
-                    newData['common'] = {
+                    updatedCommonData = {
                         allHeaders: [req.body.newData.h1],
                         checklist: {},
                         errors: {}
