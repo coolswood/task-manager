@@ -7,6 +7,13 @@ let app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const defaultThisTask = {
+    h1: "Напишите название",
+    thisErrorList: [],
+    thisFindList: [],
+    checklist: {}
+};
+
 app.options('/*', function (req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
@@ -21,33 +28,28 @@ app.post('/', (req, res) => {
 
     let sendData = {};
 
-    jsonfile.readFile('./data/new.json', (err, data) => {
+    jsonfile.readFile('./data/common.json', (err, data) => {
 
-        if(!data || !data.thisTask) {
+        if(!data || !data.tasks) {
             sendData = {
                 "tasks": {"Напишите название": {
-                    "h1": "Напишите название",
-                    "thisErrorList": [],
-                    "thisFindList": [],
-                    "checklist": {}
-                }},
+                        "h1": "Напишите название",
+                        "thisErrorList": [],
+                        "thisFindList": [],
+                        "checklist": {}
+                    }},
                 "commonData": {
-                    "allHeaders": [],
+                    "allHeaders": ["Напишите название"],
                     "checklist": {},
                     "errors": {}
                 }
             };
 
-            jsonfile.writeFile('./data/new.json', sendData, 'utf8', () => {
+            jsonfile.writeFile('./data/common.json', sendData, 'utf8', () => {
                 return res.send({
-                    thisTask: {
-                        h1: "Напишите название",
-                        thisErrorList: [],
-                        thisFindList: [],
-                        checklist: {}
-                    },
+                    thisTask: defaultThisTask,
                     commonData: {
-                        allHeaders: [],
+                        allHeaders: ["Напишите название"],
                         checklist: {},
                         errors: {}
                     }
@@ -56,106 +58,80 @@ app.post('/', (req, res) => {
         } else {
             sendData = {...data, thisTask: data.tasks[name]};
 
-            jsonfile.writeFile('./data/new.json', sendData, 'utf8', () => {
-                return res.send(sendData)
-            })
+            return res.send({ thisTask: data.tasks[name] || defaultThisTask, commonData: data.commonData })
         }
     });
 });
 
-// app.post('/deleteTask', (req, res) => {
-//     res.setHeader('Access-Control-Allow-Origin', '*');
-//     res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
-//
-//     jsonfile.readFile('./data/tasks.json', (err, data) => {
-//         delete data[req.body.name];
-//
-//         jsonfile.writeFile('./data/tasks.json', data, 'utf8', () => {
-//
-//             jsonfile.readFile('./data/common.json', (err, cData) => {
-//                 let index = cData.allHeaders.indexOf(req.body.name);
-//
-//                 console.log(index)
-//
-//                 if(index !== -1) {
-//                     cData.splice(1, index - 1);
-//                 }
-//
-//                 jsonfile.writeFile('./data/common.json', cData, 'utf8', () => {
-//                     return res.send({task: data, common: cData})
-//                 });
-//             });
-//         })
-//     })
-// });
+app.post('/deleteTask', (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
+
+    let name = req.body.name;
+
+    jsonfile.readFile('./data/common.json', (err, data) => {
+        delete data.tasks[name];
+
+        let allHeaders = data.commonData.allHeaders;
+        let index = allHeaders.indexOf(name);
+
+        allHeaders.splice(index, 1)
+
+        jsonfile.writeFile('./data/common.json', data, 'utf8', () => {
+            return res.send({ thisTask: defaultThisTask, commonData: data.commonData })
+        })
+    })
+});
 
 app.post('/updateH1', (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
 
-    let newData = {};
-
-    jsonfile.readFile('./data/new.json', (err, data) => {
+    jsonfile.readFile('./data/common.json', (err, data) => {
         let save = {[req.body.newData.h1]: req.body.newData};
+
+        delete data.tasks[req.body.oldText];
+
+        // Список заголовков
+
+        let allHeaders = data.commonData.allHeaders;
+        let index = allHeaders.indexOf(req.body.oldText);
+
+        if(index !== -1) {
+            allHeaders.splice(index, 1, req.body.newData.h1)
+        } else {
+            allHeaders.push(req.body.newData.h1)
+        }
 
         let updatedData = {...data, tasks: {...data.tasks, ...save}};
 
-        jsonfile.writeFile('./data/new.json', updatedData, 'utf8', () => {
-            return res.send(updatedData)
+        jsonfile.writeFile('./data/common.json', updatedData, 'utf8', () => {
+            return res.send({ thisTask: req.body.newData, commonData: data.commonData })
         })
-
-
-
-
-
-        // delete data[req.body.oldText];
-
-        //
-        // jsonfile.writeFile('./data/tasks.json', updatedData, 'utf8', () => {
-        //     newData['task'] = req.body.newData;
-        //
-        //     jsonfile.readFile('./data/common.json', (err, cData) => {
-        //         let updatedCommonData = {};
-        //
-        //         if(!cData) {
-        //             updatedCommonData = {
-        //                 allHeaders: [req.body.newData.h1],
-        //                 checklist: {},
-        //                 errors: {}
-        //             }
-        //         } else {
-        //             if(cData.allHeaders.indexOf(req.body.newData.h1) === -1) {
-        //                 updatedCommonData = {...cData, allHeaders: [...cData.allHeaders, req.body.newData.h1]};
-        //             } else {
-        //                 updatedCommonData = cData;
-        //             }
-        //         }
-        //
-        //         jsonfile.writeFile('./data/common.json', updatedCommonData, 'utf8', () => {
-        //             newData['common'] = updatedCommonData;
-        //             return res.send(newData)
-        //         });
-        //     });
-        // });
     });
 });
 
 app.post('/newCommonData', function (req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
-    jsonfile.writeFile('./data/common.json', req.body, 'utf8', () => {
-        res.send(req.body)
-    });
+
+    jsonfile.readFile('./data/common.json', (err, data) => {
+        let newCommonData = {...data, commonData: req.body}
+
+        jsonfile.writeFile('./data/common.json', newCommonData, 'utf8', () => {
+            res.send(req.body)
+        });
+    })
 });
 
 app.post('/newThisData', function (req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
 
-    jsonfile.readFile('./data/tasks.json', (err, data) => {
-        let updatedData = {...data, [req.body.h1]: req.body};
+    jsonfile.readFile('./data/common.json', (err, data) => {
+        let newThisData = {...data, tasks: {...data.tasks, [req.body.h1]: req.body}};
 
-        jsonfile.writeFile('./data/tasks.json', updatedData, 'utf8', () => {
+        jsonfile.writeFile('./data/common.json', newThisData, 'utf8', () => {
             res.send(req.body)
         });
     });

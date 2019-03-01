@@ -33,7 +33,6 @@ export default class App extends Component {
 
         if(taskName) {
             getData(taskName).then((data) => {
-                console.log(data)
                 localStorage.setItem('currentTask', this.state.thisTask.h1);
                 this.setState({
                     thisTask: data.thisTask,
@@ -48,18 +47,18 @@ export default class App extends Component {
             localStorage.setItem('currentTask', text);
 
             this.setState({
-                thisTask: data.task,
-                commonData: data.common
+                thisTask: data.thisTask,
+                commonData: data.commonData
             })
         });
     };
 
     deleteTask = (text) => {
-        deleteTask(text).then((item) => {
-            console.log(item)
-            // this.setState({
-            //     thisTask: item
-            // })
+        deleteTask(text).then((data) => {
+            this.setState({
+                thisTask: data.thisTask,
+                commonData: data.commonData
+            })
         })
     };
 
@@ -72,11 +71,11 @@ export default class App extends Component {
         localStorage.setItem('currentTask', data.h1);
 
         updateH1(data, oldText).then((data) => {
-            console.log(data)
-            // this.setState({
-            //     thisTask: data.task,
-            //     commonData: data.common
-            // })
+            console.log(data.thisTask, data.commonData)
+            this.setState({
+                thisTask: data.thisTask,
+                commonData: data.commonData
+            })
         });
     };
 
@@ -194,82 +193,82 @@ export default class App extends Component {
         })
     };
 
-  render() {
-      const { thisTask, commonData } = this.state;
+    render() {
+        const { thisTask, commonData } = this.state;
 
-    return (
-        <Context.Provider value = {{
-            ...this.state,
-            addNewMistake: this.addNewMistake,
-            addNewFind: this.addNewFind,
-            addLocalChecklist: this.addLocalChecklist,
-            addCommonChecklist: this.addCommonChecklist,
-            toggleChecklist: this.toggleChecklist,
-            changeH1: this.changeH1,
-            createNewTask: this.createNewTask,
-            changeTask: this.changeTask,
-            deleteTask: this.deleteTask
-        }}>
-            <div className="background" />
-            <div className="app">
-                <Nav headers={commonData.allHeaders} />
-                <Header />
-                <section>
-                    <main>
-                        <Page>
-                            <AddEvent
-                                h2="Добавить ошибку"
-                                type='ordinar'
-                                id="addMistake"
-                                color={'error'}
-                                data={thisTask.thisErrorList}
-                            />
-                        </Page>
-                        <Page>
-                            <AddEvent
-                                h2="Нашел ошибку"
-                                type='ordinar'
-                                id="findMistake"
-                                color={'check'}
-                                data={thisTask.thisFindList}
-                            />
-                        </Page>
-                    </main>
-                    <aside>
-                        <Page>
-                            <Tabs defaultActiveKey="thisChecklist">
-                                <Tab eventKey="thisChecklist" title="Checklist задачи">
-                                    <AddEvent
-                                        h2="Checklist задачи"
-                                        type="checklist"
-                                        id="localChecklist"
-                                        data={thisTask.checklist}
-                                    />
-                                </Tab>
-                                <Tab eventKey="checklist" title="checklist">
-                                    <AddEvent
-                                        h2="Checklist"
-                                        type="checklist"
-                                        id="commonChecklist"
-                                        data={commonData.checklist}
-                                    />
-                                </Tab>
-                            </Tabs>
-                        </Page>
-                        <Page>
-                            <AddEvent
-                                h2="Все ошибки"
-                                type="mistakes"
-                                data={commonData.errors}
-                            />
-                        </Page>
-                    </aside>
-                </section>
-                <Button variant="primary" size="lg" block>
-                    Завершить задачу
-                </Button>
-            </div>
-        </Context.Provider>
-    );
-  }
+        return (
+            <Context.Provider value = {{
+                ...this.state,
+                addNewMistake: this.addNewMistake,
+                addNewFind: this.addNewFind,
+                addLocalChecklist: this.addLocalChecklist,
+                addCommonChecklist: this.addCommonChecklist,
+                toggleChecklist: this.toggleChecklist,
+                changeH1: this.changeH1,
+                createNewTask: this.createNewTask,
+                changeTask: this.changeTask,
+                deleteTask: this.deleteTask
+            }}>
+                <div className="background" />
+                <div className="app">
+                    <Nav headers={commonData.allHeaders} />
+                    <Header />
+                    <section>
+                        <main>
+                            <Page>
+                                <AddEvent
+                                    h2="Добавить ошибку"
+                                    type='ordinar'
+                                    id="addMistake"
+                                    color={'error'}
+                                    data={thisTask.thisErrorList}
+                                />
+                            </Page>
+                            <Page>
+                                <AddEvent
+                                    h2="Нашел ошибку"
+                                    type='ordinar'
+                                    id="findMistake"
+                                    color={'check'}
+                                    data={thisTask.thisFindList}
+                                />
+                            </Page>
+                        </main>
+                        <aside>
+                            <Page>
+                                <Tabs defaultActiveKey="thisChecklist">
+                                    <Tab eventKey="thisChecklist" title="Checklist задачи">
+                                        <AddEvent
+                                            h2="Checklist задачи"
+                                            type="checklist"
+                                            id="localChecklist"
+                                            data={thisTask.checklist}
+                                        />
+                                    </Tab>
+                                    <Tab eventKey="checklist" title="checklist">
+                                        <AddEvent
+                                            h2="Checklist"
+                                            type="checklist"
+                                            id="commonChecklist"
+                                            data={commonData.checklist}
+                                        />
+                                    </Tab>
+                                </Tabs>
+                            </Page>
+                            <Page>
+                                <AddEvent
+                                    h2="Все ошибки"
+                                    type="mistakes"
+                                    data={commonData.errors}
+                                />
+                            </Page>
+                        </aside>
+                    </section>
+                    <Button variant="primary" size="lg" block>
+                        Завершить задачу
+                    </Button>
+                </div>
+            </Context.Provider>
+        );
+    }
 }
