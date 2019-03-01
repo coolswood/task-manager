@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
-import api from './helpers/api.js'
-import { getData, updateCommonData, updateThisData, updateH1, changeTask } from './api'
+import { getData, updateCommonData, updateThisData, updateH1, changeTask, deleteTask } from './api'
 
 import Page from './UI/Page'
 
@@ -34,25 +33,15 @@ export default class App extends Component {
 
         if(taskName) {
             getData(taskName).then((data) => {
+                console.log(data)
                 localStorage.setItem('currentTask', this.state.thisTask.h1);
                 this.setState({
-                    thisTask: data.task,
-                    commonData: data.common
+                    thisTask: data.thisTask,
+                    commonData: data.commonData
                 })
             });
         }
     }
-
-    updateH1 = (data, oldText) => {
-        localStorage.setItem('currentTask', data.h1);
-
-        updateH1(data, oldText).then((data) => {
-            this.setState({
-                thisTask: data.task,
-                commonData: data.common
-            })
-        });
-    };
 
     changeTask = (text) => {
         changeTask(text).then((data) => {
@@ -65,7 +54,14 @@ export default class App extends Component {
         });
     };
 
-    // api
+    deleteTask = (text) => {
+        deleteTask(text).then((item) => {
+            console.log(item)
+            // this.setState({
+            //     thisTask: item
+            // })
+        })
+    };
 
     changeH1 = (text) => {
         const { thisTask } = this.state;
@@ -73,11 +69,15 @@ export default class App extends Component {
 
         let data = {...thisTask, h1: text};
 
-        this.updateH1(data, oldText);
+        localStorage.setItem('currentTask', data.h1);
 
-        this.setState({
-            thisTask: data
-        })
+        updateH1(data, oldText).then((data) => {
+            console.log(data)
+            // this.setState({
+            //     thisTask: data.task,
+            //     commonData: data.common
+            // })
+        });
     };
 
     createNewTask = () => {
@@ -174,7 +174,7 @@ export default class App extends Component {
 
             data = {...commonData, toggled};
 
-            this.updateCommonData(data);
+            updateCommonData(data);
 
             this.setState({
                 commonData: data
@@ -187,7 +187,7 @@ export default class App extends Component {
 
         let data = {...commonData, checklist: {...commonData.checklist, [text]: false}};
 
-        this.updateCommonData(data);
+        updateCommonData(data);
 
         this.setState({
             commonData: data
@@ -207,7 +207,8 @@ export default class App extends Component {
             toggleChecklist: this.toggleChecklist,
             changeH1: this.changeH1,
             createNewTask: this.createNewTask,
-            changeTask: this.changeTask
+            changeTask: this.changeTask,
+            deleteTask: this.deleteTask
         }}>
             <div className="background" />
             <div className="app">

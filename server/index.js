@@ -21,35 +21,73 @@ app.post('/', (req, res) => {
 
     let sendData = {};
 
-    jsonfile.readFile('./data/tasks.json', (err, data) => {
+    jsonfile.readFile('./data/new.json', (err, data) => {
 
-        if(!data || !data[name]) {
-            sendData['task'] = {
-                h1: "Напишите название",
-                thisErrorList: [],
-                thisFindList: [],
-                checklist: {}
-            };
-        } else {
-            sendData['task'] = data[name];
-        }
-
-        jsonfile.readFile('./data/common.json', (err, data) => {
-
-            if(!data) {
-                sendData['common'] = {
-                    allHeaders: [],
-                    checklist: {},
-                    errors: {}
+        if(!data || !data.thisTask) {
+            sendData = {
+                "tasks": {"Напишите название": {
+                    "h1": "Напишите название",
+                    "thisErrorList": [],
+                    "thisFindList": [],
+                    "checklist": {}
+                }},
+                "commonData": {
+                    "allHeaders": [],
+                    "checklist": {},
+                    "errors": {}
                 }
-            } else {
-                sendData['common'] = data;
-            }
+            };
 
-            return res.send(sendData)
-        });
+            jsonfile.writeFile('./data/new.json', sendData, 'utf8', () => {
+                return res.send({
+                    thisTask: {
+                        h1: "Напишите название",
+                        thisErrorList: [],
+                        thisFindList: [],
+                        checklist: {}
+                    },
+                    commonData: {
+                        allHeaders: [],
+                        checklist: {},
+                        errors: {}
+                    }
+                })
+            })
+        } else {
+            sendData = {...data, thisTask: data.tasks[name]};
+
+            jsonfile.writeFile('./data/new.json', sendData, 'utf8', () => {
+                return res.send(sendData)
+            })
+        }
     });
 });
+
+// app.post('/deleteTask', (req, res) => {
+//     res.setHeader('Access-Control-Allow-Origin', '*');
+//     res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
+//
+//     jsonfile.readFile('./data/tasks.json', (err, data) => {
+//         delete data[req.body.name];
+//
+//         jsonfile.writeFile('./data/tasks.json', data, 'utf8', () => {
+//
+//             jsonfile.readFile('./data/common.json', (err, cData) => {
+//                 let index = cData.allHeaders.indexOf(req.body.name);
+//
+//                 console.log(index)
+//
+//                 if(index !== -1) {
+//                     cData.splice(1, index - 1);
+//                 }
+//
+//                 jsonfile.writeFile('./data/common.json', cData, 'utf8', () => {
+//                     return res.send({task: data, common: cData})
+//                 });
+//             });
+//         })
+//     })
+// });
 
 app.post('/updateH1', (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -57,37 +95,48 @@ app.post('/updateH1', (req, res) => {
 
     let newData = {};
 
-    jsonfile.readFile('./data/tasks.json', (err, data) => {
+    jsonfile.readFile('./data/new.json', (err, data) => {
         let save = {[req.body.newData.h1]: req.body.newData};
+
+        let updatedData = {...data, tasks: {...data.tasks, ...save}};
+
+        jsonfile.writeFile('./data/new.json', updatedData, 'utf8', () => {
+            return res.send(updatedData)
+        })
+
+
+
+
+
         // delete data[req.body.oldText];
-        let updatedData = {...data, ...save};
 
-        jsonfile.writeFile('./data/tasks.json', updatedData, 'utf8', () => {
-            newData['task'] = req.body.newData;
-
-            jsonfile.readFile('./data/common.json', (err, cData) => {
-                let updatedCommonData = {};
-
-                if(!cData) {
-                    updatedCommonData = {
-                        allHeaders: [req.body.newData.h1],
-                        checklist: {},
-                        errors: {}
-                    }
-                } else {
-                    if(cData.allHeaders.indexOf(req.body.newData.h1) === -1) {
-                        updatedCommonData = {...cData, allHeaders: [...cData.allHeaders, req.body.newData.h1]};
-                    } else {
-                        updatedCommonData = cData;
-                    }
-                }
-
-                jsonfile.writeFile('./data/common.json', updatedCommonData, 'utf8', () => {
-                    newData['common'] = updatedCommonData;
-                    return res.send(newData)
-                });
-            });
-        });
+        //
+        // jsonfile.writeFile('./data/tasks.json', updatedData, 'utf8', () => {
+        //     newData['task'] = req.body.newData;
+        //
+        //     jsonfile.readFile('./data/common.json', (err, cData) => {
+        //         let updatedCommonData = {};
+        //
+        //         if(!cData) {
+        //             updatedCommonData = {
+        //                 allHeaders: [req.body.newData.h1],
+        //                 checklist: {},
+        //                 errors: {}
+        //             }
+        //         } else {
+        //             if(cData.allHeaders.indexOf(req.body.newData.h1) === -1) {
+        //                 updatedCommonData = {...cData, allHeaders: [...cData.allHeaders, req.body.newData.h1]};
+        //             } else {
+        //                 updatedCommonData = cData;
+        //             }
+        //         }
+        //
+        //         jsonfile.writeFile('./data/common.json', updatedCommonData, 'utf8', () => {
+        //             newData['common'] = updatedCommonData;
+        //             return res.send(newData)
+        //         });
+        //     });
+        // });
     });
 });
 

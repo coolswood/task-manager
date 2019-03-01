@@ -1,3 +1,5 @@
+@import 'constants/constants.sass'
+
 .background
   background: url('img/bg.jpg')
   background-size: cover
@@ -25,3 +27,20 @@
     display: flex
     .nav-item
       flex-grow: 1
+  .delete-wrap
+    position: relative
+    .delete
+      width: 20px
+      height: 20px
+      display: flex
+      justify-content: center
+      align-items: center
+      background: blue
+      color: $white
+      border-radius: 50%
+      position: absolute
+      top: 50%
+      right: 20px
+      transform: translate(0, -50%)
+      z-index: 10
+      cursor: pointer

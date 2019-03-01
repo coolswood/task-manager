@@ -18,5 +18,9 @@ export const updateH1 = (data, oldText) => {
 };
 
 export const changeTask = (text) => {
-    api(`${localhost}/`, {name: text})
+    return api(`${localhost}/`, {name: text})
+};
+
+export const deleteTask = (text) => {
+    return api(`${localhost}/deleteTask`, {name: text})
 };

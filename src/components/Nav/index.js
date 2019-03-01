@@ -23,6 +23,12 @@ export default class Nav extends Component {
         changeTask(text)
     };
 
+    deleteTask = (text) => {
+        const { deleteTask } = this.context;
+
+        deleteTask(text)
+    };
+
     render() {
         const { open } = this.state;
         const { headers } = this.props;
@@ -34,7 +40,10 @@ export default class Nav extends Component {
                     <div className="burger-close" onClick={this.toggleMenu}></div>
                     <div className="wrap">
                         {headers && headers.map((item) => {
-                            return <button className="nav-item" onClick={() => this.changeTask(item)}>{item}</button>
+                            return <div className="delete-wrap">
+                                <div onClick={() => this.deleteTask(item)} className="delete">-</div>
+                                <button className="nav-item" onClick={() => this.changeTask(item)}>{item}</button>
+                            </div>
                         })}
                     </div>
                 </nav>
