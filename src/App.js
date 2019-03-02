@@ -107,8 +107,6 @@ export default class App extends Component {
         // Добавить ошибку
         let data = {...thisTask, thisErrorList: [...thisTask.thisErrorList, text]};
 
-        updateThisData(data);
-
         // Добавить общую ошибку
 
         let newDate = {};
@@ -130,7 +128,9 @@ export default class App extends Component {
             newDate = {...commonData, errors: mewObj}
         }
 
-        updateCommonData(newDate);
+        updateThisData(data).then(() => {
+            updateCommonData(newDate);
+        });
 
         this.setState({
             thisTask: data,

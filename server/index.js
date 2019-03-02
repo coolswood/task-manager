@@ -91,26 +91,39 @@ app.post('/deleteItemTask', (req, res) => {
     let type = req.body.type;
     let h1 = req.body.h1;
 
-    console.log(name, type, h1)
+    jsonfile.readFile('./data/common.json', (err, data) => {
+        if(type === 'addMistake') {
+            let thisErrorList = data.tasks[h1].thisErrorList;
+            let index = thisErrorList.indexOf(name);
 
-    // jsonfile.readFile('./data/common.json', (err, data) => {
-    //     if(type === 'addMistake') {
-    //         let thisErrorList = data.tasks[h1].thisErrorList;
-    //         let index = thisErrorList.indexOf(name);
-    //
-    //         thisErrorList.splice(index, 1);
-    //
-    //         if(data.commonData.errors[name] === 1) {
-    //             delete data.commonData.errors[name]
-    //         } else {
-    //             // data.commonData.errors[name] = data.commonData.errors[name] - 1
-    //         }
-    //
-    //         jsonfile.writeFile('./data/common.json', data, 'utf8', () => {
-    //             return res.send({ thisTask: data.tasks[h1], commonData: data.commonData })
-    //         })
-    //     }
-    // })
+            thisErrorList.splice(index, 1);
+
+            if(data.commonData.errors[name] === 1) {
+                delete data.commonData.errors[name]
+            } else {
+                data.commonData.errors[name] = data.commonData.errors[name] - 1
+            }
+        }
+
+        if(type === 'findMistake') {
+            let thisFindList = data.tasks[h1].thisFindList;
+            let index = thisFindList.indexOf(name);
+
+            thisFindList.splice(index, 1);
+        }
+
+        if(type === 'localChecklist') {
+            delete data.tasks[h1].checklist[name[1]];
+        }
+
+        if(type === 'commonChecklist') {
+            delete data.commonData.checklist[name[1]];
+        }
+
+        jsonfile.writeFile('./data/common.json', data, 'utf8', () => {
+            return res.send({ thisTask: data.tasks[h1], commonData: data.commonData })
+        })
+    })
 });
 
 
@@ -147,9 +160,9 @@ app.post('/newCommonData', function (req, res) {
     res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
 
     jsonfile.readFile('./data/common.json', (err, data) => {
-        // let newCommonData = {...data, commonData: req.body}
+        let newCommonData = {...data, commonData: req.body}
 
-        jsonfile.writeFile('./data/common.json', data, 'utf8', () => {
+        jsonfile.writeFile('./data/common.json', newCommonData, 'utf8', () => {
             res.send(req.body)
         });
     })
@@ -160,7 +173,7 @@ app.post('/newThisData', function (req, res) {
     res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
 
     jsonfile.readFile('./data/common.json', (err, data) => {
-        // let newThisData = {...data, tasks: {...data.tasks, [req.body.h1]: req.body}};
+        let newThisData = {...data, tasks: {...data.tasks, [req.body.h1]: req.body}};
 
         jsonfile.writeFile('./data/common.json', newThisData, () => {
             res.send(req.body)
