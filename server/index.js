@@ -116,9 +116,9 @@ app.post('/newCommonData', function (req, res) {
     res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
 
     jsonfile.readFile('./data/common.json', (err, data) => {
-        let newCommonData = {...data, commonData: req.body}
+        // let newCommonData = {...data, commonData: req.body}
 
-        jsonfile.writeFile('./data/common.json', newCommonData, 'utf8', () => {
+        jsonfile.writeFile('./data/common.json', data, 'utf8', () => {
             res.send(req.body)
         });
     })
@@ -131,7 +131,7 @@ app.post('/newThisData', function (req, res) {
     jsonfile.readFile('./data/common.json', (err, data) => {
         let newThisData = {...data, tasks: {...data.tasks, [req.body.h1]: req.body}};
 
-        jsonfile.writeFile('./data/common.json', newThisData, 'utf8', () => {
+        jsonfile.writeFile('./data/common.json', newThisData, () => {
             res.send(req.body)
         });
     });
