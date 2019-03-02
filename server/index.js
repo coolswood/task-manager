@@ -83,6 +83,37 @@ app.post('/deleteTask', (req, res) => {
     })
 });
 
+app.post('/deleteItemTask', (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
+
+    let name = req.body.name;
+    let type = req.body.type;
+    let h1 = req.body.h1;
+
+    console.log(name, type, h1)
+
+    // jsonfile.readFile('./data/common.json', (err, data) => {
+    //     if(type === 'addMistake') {
+    //         let thisErrorList = data.tasks[h1].thisErrorList;
+    //         let index = thisErrorList.indexOf(name);
+    //
+    //         thisErrorList.splice(index, 1);
+    //
+    //         if(data.commonData.errors[name] === 1) {
+    //             delete data.commonData.errors[name]
+    //         } else {
+    //             // data.commonData.errors[name] = data.commonData.errors[name] - 1
+    //         }
+    //
+    //         jsonfile.writeFile('./data/common.json', data, 'utf8', () => {
+    //             return res.send({ thisTask: data.tasks[h1], commonData: data.commonData })
+    //         })
+    //     }
+    // })
+});
+
+
 app.post('/updateH1', (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
@@ -129,7 +160,7 @@ app.post('/newThisData', function (req, res) {
     res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
 
     jsonfile.readFile('./data/common.json', (err, data) => {
-        let newThisData = {...data, tasks: {...data.tasks, [req.body.h1]: req.body}};
+        // let newThisData = {...data, tasks: {...data.tasks, [req.body.h1]: req.body}};
 
         jsonfile.writeFile('./data/common.json', newThisData, () => {
             res.send(req.body)

@@ -24,3 +24,7 @@ export const changeTask = (text) => {
 export const deleteTask = (text) => {
     return api(`${localhost}/deleteTask`, {name: text})
 };
+
+export const deleteItemTask = (text, type, thisTask) => {
+    return api(`${localhost}/deleteItemTask`, {name: text, type: type, h1: thisTask.h1})
+};

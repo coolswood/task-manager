@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { getData, updateCommonData, updateThisData, updateH1, changeTask, deleteTask } from './api'
+import { getData, updateCommonData, updateThisData, updateH1, changeTask, deleteTask, deleteItemTask } from './api'
 
 import Page from './UI/Page'
 
@@ -55,6 +55,17 @@ export default class App extends Component {
 
     deleteTask = (text) => {
         deleteTask(text).then((data) => {
+            this.setState({
+                thisTask: data.thisTask,
+                commonData: data.commonData
+            })
+        })
+    };
+
+    deleteItemTask = (text, type) => {
+        const { thisTask } = this.state;
+
+        deleteItemTask(text, type, thisTask).then((data) => {
             this.setState({
                 thisTask: data.thisTask,
                 commonData: data.commonData
@@ -207,7 +218,8 @@ export default class App extends Component {
                 changeH1: this.changeH1,
                 createNewTask: this.createNewTask,
                 changeTask: this.changeTask,
-                deleteTask: this.deleteTask
+                deleteTask: this.deleteTask,
+                deleteItemTask: this.deleteItemTask
             }}>
                 <div className="background" />
                 <div className="app">

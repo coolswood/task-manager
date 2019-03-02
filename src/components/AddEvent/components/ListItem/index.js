@@ -18,14 +18,24 @@ export default class ListItem extends Component {
         toggleChecklist(text, id)
     };
 
+    deleteTask = () => {
+        const { deleteItemTask } = this.context;
+        const { id, value } = this.props;
+
+        deleteItemTask(value, id)
+    };
+
     render() {
         const { type, color, value, i } = this.props;
 
         if(type === 'checklist') {
             return (
-                <div className={`list-item list-item__${type}`} onClick={this.toggleChecklist}>
-                    <span hidden={!value[0]} className="check-sign">✔ </span>
-                    <span ref={this.name}>{value[1]}</span>
+                <div className="delete-wrap">
+                    <div onClick={() => this.deleteTask()} className="delete">-</div>
+                    <div className={`list-item list-item__${type}`} onClick={this.toggleChecklist}>
+                        <span hidden={!value[0]} className="check-sign">✔ </span>
+                        <span ref={this.name}>{value[1]}</span>
+                    </div>
                 </div>
             )
         }
@@ -39,9 +49,12 @@ export default class ListItem extends Component {
             )
         }
         return (
-            <div className={`list-item list-item--${color}`}>
-                <span className="nmb">{i}. </span>
-                <span>{value}</span>
+            <div className="delete-wrap">
+                <div onClick={this.deleteTask} className="delete">-</div>
+                <div className={`list-item list-item--${color}`}>
+                    <span className="nmb">{i}. </span>
+                    <span>{value}</span>
+                </div>
             </div>
         )
     }
