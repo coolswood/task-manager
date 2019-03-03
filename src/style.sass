@@ -1,5 +1,9 @@
 @import 'constants/constants.sass'
 
+h2
+  font-size: 1.6rem
+  margin-bottom: 15px
+
 .background
   background: url('img/bg.jpg')
   background-size: cover
@@ -27,15 +31,16 @@
     display: flex
     .nav-item
       flex-grow: 1
+      margin-top: 10px
   .delete-wrap
     position: relative
+    margin-top: 20px
     .delete
-      width: 20px
-      height: 20px
+      width: 25px
+      height: 25px
       display: flex
       justify-content: center
       align-items: center
-      background: blue
       color: $white
       border-radius: 50%
       position: absolute
@@ -44,3 +49,7 @@
       transform: translate(0, -50%)
       z-index: 10
       cursor: pointer
+      svg
+        fill: #000
+        height: 15px
+        width: 15px

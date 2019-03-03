@@ -249,17 +249,17 @@ export default class App extends Component {
                         <aside>
                             <Page>
                                 <Tabs defaultActiveKey="thisChecklist">
-                                    <Tab eventKey="thisChecklist" title="Checklist задачи">
+                                    <Tab eventKey="thisChecklist" title="Чеклист задачи">
                                         <AddEvent
-                                            h2="Checklist задачи"
+                                            h2="Чеклист задачи"
                                             type="checklist"
                                             id="localChecklist"
                                             data={thisTask.checklist}
                                         />
                                     </Tab>
-                                    <Tab eventKey="checklist" title="checklist">
+                                    <Tab eventKey="checklist" title="Чеклист">
                                         <AddEvent
-                                            h2="Checklist"
+                                            h2="Чеклист"
                                             type="checklist"
                                             id="commonChecklist"
                                             data={commonData.checklist}
@@ -276,9 +276,6 @@ export default class App extends Component {
                             </Page>
                         </aside>
                     </section>
-                    <Button variant="primary" size="lg" block>
-                        Завершить задачу
-                    </Button>
                 </div>
             </Context.Provider>
         );

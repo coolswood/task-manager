@@ -19,17 +19,24 @@
       color: $white
 
   .list-item__checklist
+    display: flex
+    align-items: center
     &:hover
       background: $check
       cursor: pointer
+
+    .check-sign
+      font-size: 0
+      margin-right: 10px
 
   .list-item__mistakes
     display: flex
     align-items: center
 
     .mistake-cnt
-      width: 35px
-      height: 35px
+      width: 30px
+      height: 30px
+      font-size: 15px
       border-radius: 50%
       display: flex
       justify-content: center
