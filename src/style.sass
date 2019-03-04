@@ -1,5 +1,8 @@
 @import 'constants/constants.sass'
 
+*
+  outline: none !important
+
 h2
   font-size: 1.6rem
   margin-bottom: 15px
@@ -34,7 +37,9 @@ h2
       margin-top: 10px
   .delete-wrap
     position: relative
-    margin-top: 20px
+    margin-top: 10px
+    &:hover .delete
+      opacity: 1
     .delete
       width: 25px
       height: 25px
@@ -49,6 +54,7 @@ h2
       transform: translate(0, -50%)
       z-index: 10
       cursor: pointer
+      opacity: 0
       svg
         fill: #000
         height: 15px

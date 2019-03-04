@@ -76,7 +76,7 @@ export default class Timer extends Component {
   render() {
     const timerStyle = {
       margin: "0px",
-      padding: "2em"
+      padding: "1em"
     };
 
     const buttonStyle = {
