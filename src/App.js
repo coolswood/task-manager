@@ -4,7 +4,7 @@ import { getData, updateCommonData, updateThisData, updateH1, changeTask, delete
 
 import Page from './UI/Page'
 
-import { Tabs, Tab, Button } from 'react-bootstrap';
+import { Tabs, Tab } from 'react-bootstrap';
 
 import AddEvent from './components/AddEvent'
 import Header from './components/Header'
@@ -18,7 +18,8 @@ export default class App extends Component {
             h1: "Напишите название",
             thisErrorList: [],
             thisFindList: [],
-            checklist: {}
+            checklist: {},
+            timer: 0
         },
         commonData: {
             allHeaders: [],
@@ -43,6 +44,8 @@ export default class App extends Component {
     }
 
     changeTask = (text) => {
+        updateThisData(this.state.thisTask);
+
         changeTask(text).then((data) => {
             localStorage.setItem('currentTask', text);
 
@@ -51,6 +54,12 @@ export default class App extends Component {
                 commonData: data.commonData
             })
         });
+    };
+
+    saveTimer = (time) => {
+        this.setState({
+            thisTask: {...this.state.thisTask, timer: time}
+        })
     };
 
     deleteTask = (text) => {
@@ -219,7 +228,8 @@ export default class App extends Component {
                 createNewTask: this.createNewTask,
                 changeTask: this.changeTask,
                 deleteTask: this.deleteTask,
-                deleteItemTask: this.deleteItemTask
+                deleteItemTask: this.deleteItemTask,
+                saveTimer: this.saveTimer
             }}>
                 <div className="background" />
                 <div className="app">

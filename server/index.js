@@ -11,7 +11,8 @@ const defaultThisTask = {
     h1: "Напишите название",
     thisErrorList: [],
     thisFindList: [],
-    checklist: {}
+    checklist: {},
+    timer: 0
 };
 
 app.options('/*', function (req, res) {
@@ -32,12 +33,7 @@ app.post('/', (req, res) => {
 
         if(!data || !data.tasks) {
             sendData = {
-                "tasks": {"Напишите название": {
-                        "h1": "Напишите название",
-                        "thisErrorList": [],
-                        "thisFindList": [],
-                        "checklist": {}
-                    }},
+                "tasks": {"Напишите название": defaultThisTask},
                 "commonData": {
                     "allHeaders": ["Напишите название"],
                     "checklist": {},
@@ -75,7 +71,7 @@ app.post('/deleteTask', (req, res) => {
         let allHeaders = data.commonData.allHeaders;
         let index = allHeaders.indexOf(name);
 
-        allHeaders.splice(index, 1)
+        allHeaders.splice(index, 1);
 
         jsonfile.writeFile('./data/common.json', data, 'utf8', () => {
             return res.send({ thisTask: defaultThisTask, commonData: data.commonData })
