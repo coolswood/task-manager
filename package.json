@@ -3,19 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "bootstrap": "^4.3.1",
     "electron-is-dev": "^1.0.1",
-    "express": "^4.16.4",
-    "express-http-proxy": "^1.5.1",
-    "jsonfile": "^5.0.0",
     "node-sass": "^4.11.0",
-    "nodemon": "^1.18.10",
     "react": "^16.8.3",
-    "react-bootstrap": "^1.0.0-beta.5",
     "react-dom": "^16.8.3",
+    "react-outside-click-handler": "^1.2.2",
     "react-scripts": "2.1.5",
-    "react-timer": "^1.1.0"
+    "react-tabs": "^3.0.0",
+    "react-timer": "https://github.com/coolswood/react-timer.git"
   },
   "scripts": {
     "start": "react-scripts start",

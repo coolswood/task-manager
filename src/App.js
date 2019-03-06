@@ -4,7 +4,8 @@ import { getData, updateCommonData, updateThisData, updateH1, changeTask, delete
 
 import Page from './UI/Page'
 
-import { Tabs, Tab } from 'react-bootstrap';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import "react-tabs/style/react-tabs.css";
 
 import AddEvent from './components/AddEvent'
 import Header from './components/Header'
@@ -258,23 +259,27 @@ export default class App extends Component {
                         </main>
                         <aside>
                             <Page>
-                                <Tabs defaultActiveKey="thisChecklist">
-                                    <Tab eventKey="thisChecklist" title="Чеклист задачи">
+                                <Tabs>
+                                    <TabList>
+                                        <Tab>Чеклист задачи</Tab>
+                                        <Tab>Чеклист</Tab>
+                                    </TabList>
+                                    <TabPanel>
                                         <AddEvent
                                             h2="Чеклист задачи"
                                             type="checklist"
                                             id="localChecklist"
                                             data={thisTask.checklist}
                                         />
-                                    </Tab>
-                                    <Tab eventKey="checklist" title="Чеклист">
+                                    </TabPanel>
+                                    <TabPanel>
                                         <AddEvent
                                             h2="Чеклист"
                                             type="checklist"
                                             id="commonChecklist"
                                             data={commonData.checklist}
                                         />
-                                    </Tab>
+                                    </TabPanel>
                                 </Tabs>
                             </Page>
                             <Page>
