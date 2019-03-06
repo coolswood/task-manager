@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
 
 import './style.sass';
 
@@ -53,7 +52,7 @@ export default class Index extends Component {
                         })}
                     </datalist>
                 </div>
-                <Button type="submit" variant="outline-primary">Добавить</Button>
+                <button type="submit" variant="outline-primary">Добавить</button>
             </form>
         );
     }

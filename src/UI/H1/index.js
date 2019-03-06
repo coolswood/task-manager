@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
+
+import OutsideClickHandler from 'react-outside-click-handler';
 
 import './style.sass';
 
@@ -24,10 +25,11 @@ export default class H1 extends Component {
     };
 
     saveVal = (e) => {
+        if(!this.state.edit) return;
         const { changeH1 } = this.context;
         let text = this.input.current.value;
 
-        if(e.keyCode === 13) {
+        if((e && e.keyCode === 13) || !e) {
             changeH1(text);
             this.setState({
                 edit: false
@@ -40,12 +42,17 @@ export default class H1 extends Component {
         const { edit } = this.state;
 
         return (
-            <div className="h1-wrapper">
-                {edit ?
-                    <input ref={this.input} onKeyDown={this.saveVal} defaultValue={thisTask.h1} type="text"/> :
-                    <h1 onClick={this.toggleH1}>{thisTask.h1}</h1>
-                }
-            </div>
+            <OutsideClickHandler
+                onOutsideClick={() => {
+                    this.saveVal()
+                }}>
+                <div className="h1-wrapper">
+                    {edit ?
+                        <input ref={this.input} onKeyDown={this.saveVal} defaultValue={thisTask.h1} type="text"/> :
+                        <h1 onClick={this.toggleH1}>{thisTask.h1}</h1>
+                    }
+                </div>
+            </OutsideClickHandler>
         );
     }
 }
