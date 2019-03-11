@@ -5,11 +5,16 @@
   .list
 
   .list-item
+    display: flex
+    align-items: center
     margin: 10px 0
     margin-right: 10px
     padding: 10px
     padding-right: 50px
     font-size: 18px
+
+    .nmb
+      margin-right: 5px
 
     &--error
       background: $error
@@ -22,13 +27,18 @@
   .list-item__checklist
     display: flex
     align-items: center
+    position: relative
     &:hover
       background: $check
       cursor: pointer
 
+    .scroller-wrap
+      margin-left: 30px
+
     .check-sign
       font-size: 0
-      margin-right: 10px
+      position: absolute
+      left: 10px
 
   .list-item__mistakes
     display: flex
@@ -45,3 +55,4 @@
       color: $white
       background: red
       margin-right: 10px
+      flex-shrink: 0

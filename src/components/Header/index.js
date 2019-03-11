@@ -25,7 +25,7 @@ export default class Header extends Component {
                 <Page className="h1-page">
                     <H1 />
                 </Page>
-                <Page>
+                <Page className="timer-wrap">
                     <div className="timer">
                         <TimerComponent />
                     </div>
