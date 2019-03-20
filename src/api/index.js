@@ -1,30 +1,195 @@
-import api from "../helpers/api";
-import { localhost } from '../config.js'
+let db;
 
-export const getData = (taskName) => {
-    return api(`${localhost}/`, {name: taskName})
+let newThisItem = {
+    h1: "Напишите название",
+    thisErrorList: [],
+    thisFindList: [],
+    checklist: {},
+    timer: 0
+};
+
+let DBOpenRequest = window.indexedDB.open("taskList", 1);
+
+DBOpenRequest.onupgradeneeded = function(event) {
+    let db = event.target.result;
+
+    let thisTask = db.createObjectStore("thisTask", { keyPath: "h1", autoIncrement: true });
+
+    thisTask.put(newThisItem);
+
+    let commonData = db.createObjectStore("commonData", { keyPath: "commonData", autoIncrement: true });
+
+    let newCommonItem = {
+        allHeaders: ["Напишите название"],
+        checklist: {},
+        errors: {}
+    };
+
+    commonData.put(newCommonItem)
+};
+
+export const getData = (taskName, callback) => {
+
+    DBOpenRequest.onsuccess = (event) => {
+        db = event.target.result;
+
+        let objectStore = db.transaction(["thisTask"]).objectStore('thisTask').get(taskName);
+
+        objectStore.onsuccess = (event) => {
+            let objectStore = db.transaction(["commonData"]).objectStore('commonData');
+            objectStore.openCursor().onsuccess = function (e) {
+                let cursor = e.target.result;
+
+                if(!event.target.result) {
+                    callback({thisTask: newThisItem, commonData: cursor.value})
+                } else {
+                    callback({thisTask: event.target.result, commonData: cursor.value})
+                }
+            };
+        };
+    };
 };
 
 export const updateCommonData = (data) => {
-    return api(`${localhost}/newCommonData`, data);
+    let transaction = db.transaction(["commonData"], "readwrite").objectStore("commonData");
+
+    transaction.put(data);
 };
 
 export const updateThisData = (data) => {
-    return api(`${localhost}/newThisData`, data);
+
+    let transaction = db.transaction(["thisTask"], "readwrite").objectStore("thisTask");
+
+    transaction.put(data);
 };
 
-export const updateH1 = (data, oldText) => {
-    return api(`${localhost}/updateH1`, {newData: data, oldText: oldText})
+export const updateH1 = (data, oldText, callback) => {
+    let objectStore = db.transaction(["commonData"], "readwrite").objectStore('commonData');
+
+    objectStore.openCursor().onsuccess = (e) => {
+        let cursor = e.target.result;
+
+        let allHeaders = cursor.value.allHeaders;
+
+        let index = allHeaders.indexOf(oldText);
+
+        if(index !== -1) {
+            allHeaders.splice(index, 1, data.h1)
+        } else {
+            allHeaders.push(data.h1)
+        }
+
+        objectStore.put({...cursor.value, allHeaders: allHeaders});
+
+        let thisStore = db.transaction(["thisTask"], "readwrite").objectStore('thisTask');
+
+        thisStore.delete(oldText);
+        thisStore.put(data);
+
+        callback({thisTask: data, commonData: cursor.value})
+    };
 };
 
-export const changeTask = (text) => {
-    return api(`${localhost}/`, {name: text})
+export const changeTask = (taskName, callback) => {
+    let objectStore = db.transaction(["thisTask"]).objectStore('thisTask').get(taskName);
+
+    objectStore.onsuccess = (event) => {
+        let objectStore = db.transaction(["commonData"]).objectStore('commonData');
+        objectStore.openCursor().onsuccess = function (e) {
+            let cursor = e.target.result;
+
+            callback({thisTask: event.target.result, commonData: cursor.value})
+        };
+    };
 };
 
-export const deleteTask = (text) => {
-    return api(`${localhost}/deleteTask`, {name: text})
+export const deleteTask = (taskName, callback) => {
+    let objectStore = db.transaction(["thisTask"], "readwrite").objectStore('thisTask');
+
+    objectStore.openCursor().onsuccess = (event) => {
+        objectStore.delete(taskName);
+
+        let common = db.transaction(["commonData"], "readwrite").objectStore('commonData');
+        common.openCursor().onsuccess = function (e) {
+            let cursor = e.target.result;
+
+            let allHeaders = cursor.value.allHeaders;
+
+            let index = allHeaders.indexOf(taskName);
+
+            allHeaders.splice(index, 1);
+
+            common.put({...cursor.value, allHeaders: allHeaders});
+
+            callback({thisTask: newThisItem, commonData: {...cursor.value, allHeaders: allHeaders}})
+        };
+    };
 };
 
-export const deleteItemTask = (text, type, thisTask) => {
-    return api(`${localhost}/deleteItemTask`, {name: text, type: type, h1: thisTask.h1})
+export const deleteItemTask = (text, type, thisTask, callback) => {
+    let objectStore = db.transaction(["thisTask"], "readwrite").objectStore('thisTask');
+
+    if(type === 'addMistake') {
+        objectStore.openCursor().onsuccess = () => {
+
+            let thisErrorList = thisTask.thisErrorList;
+            let index = thisErrorList.indexOf(text);
+
+            thisErrorList.splice(index, 1);
+
+            let thisTaskUp = {...thisTask, thisErrorList: thisErrorList}
+
+            objectStore.put(thisTaskUp);
+
+            let common = db.transaction(["commonData"], "readwrite").objectStore('commonData');
+
+            common.openCursor().onsuccess = (event) => {
+                let cursor = event.target.result.value;
+                if(cursor.errors[text] === 1) {
+                    delete cursor.errors[text]
+                } else {
+                    cursor.errors[text] = cursor.errors[text] - 1
+                }
+
+                common.put(cursor);
+
+                callback({thisTask: thisTaskUp, commonData: cursor})
+            }
+        }
+    };
+
+    if(type === 'findMistake') {
+        objectStore.openCursor().onsuccess = () => {
+            let thisFindList = thisTask.thisFindList;
+            let index = thisFindList.indexOf(text);
+
+            thisFindList.splice(index, 1);
+            objectStore.put({...thisTask, thisFindList: thisFindList});
+
+            callback({thisTask: {...thisTask, thisFindList: thisFindList}})
+        }
+    }
+
+    if(type === 'localChecklist') {
+        objectStore.openCursor().onsuccess = () => {
+            delete thisTask.checklist[text[1]];
+            objectStore.put({...thisTask, thisTask: thisTask})
+
+            callback({thisTask: {...thisTask, thisTask: thisTask}})
+        }
+    }
+
+    if(type === 'commonChecklist') {
+        let common = db.transaction(["commonData"], "readwrite").objectStore('commonData');
+
+        common.openCursor().onsuccess = (event) => {
+            let cursor = event.target.result.value;
+            delete cursor.checklist[text[1]];
+
+            common.put(cursor);
+
+            callback({commonData: cursor})
+        }
+    }
+
 };

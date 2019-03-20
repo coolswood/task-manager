@@ -34,22 +34,21 @@ export default class App extends Component {
         let taskName = localStorage.getItem('currentTask');
 
         if(taskName) {
-            getData(taskName).then((data) => {
+            getData(taskName, (data) => {
                 localStorage.setItem('currentTask', this.state.thisTask.h1);
                 this.setState({
                     thisTask: data.thisTask,
                     commonData: data.commonData
                 })
-            });
+            })
         }
     }
 
     changeTask = (text) => {
         updateThisData(this.state.thisTask);
 
-        changeTask(text).then((data) => {
+        changeTask(text, (data) => {
             localStorage.setItem('currentTask', text);
-
             this.setState({
                 thisTask: data.thisTask,
                 commonData: data.commonData
@@ -64,7 +63,7 @@ export default class App extends Component {
     };
 
     deleteTask = (text) => {
-        deleteTask(text).then((data) => {
+        deleteTask(text,(data) => {
             this.setState({
                 thisTask: data.thisTask,
                 commonData: data.commonData
@@ -75,11 +74,21 @@ export default class App extends Component {
     deleteItemTask = (text, type) => {
         const { thisTask } = this.state;
 
-        deleteItemTask(text, type, thisTask).then((data) => {
-            this.setState({
-                thisTask: data.thisTask,
-                commonData: data.commonData
-            })
+        deleteItemTask(text, type, thisTask, (data) => {
+            if(!data.commonData) {
+                this.setState({
+                    thisTask: data.thisTask
+                })
+            } else if(!data.thisTask) {
+                this.setState({
+                    commonData: data.commonData
+                })
+            } else {
+                this.setState({
+                    thisTask: data.thisTask,
+                    commonData: data.commonData
+                })
+            }
         })
     };
 
@@ -91,7 +100,7 @@ export default class App extends Component {
 
         localStorage.setItem('currentTask', data.h1);
 
-        updateH1(data, oldText).then((data) => {
+        updateH1(data, oldText,(data) => {
             console.log(data.thisTask, data.commonData)
             this.setState({
                 thisTask: data.thisTask,
@@ -138,9 +147,8 @@ export default class App extends Component {
             newDate = {...commonData, errors: mewObj}
         }
 
-        updateThisData(data).then(() => {
-            updateCommonData(newDate);
-        });
+        updateThisData(data);
+        updateCommonData(newDate);
 
         this.setState({
             thisTask: data,
