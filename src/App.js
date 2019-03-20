@@ -35,12 +35,16 @@ export default class App extends Component {
 
         if(taskName) {
             getData(taskName, (data) => {
-                localStorage.setItem('currentTask', this.state.thisTask.h1);
+                localStorage.setItem('currentTask', data.thisTask.h1);
                 this.setState({
                     thisTask: data.thisTask,
                     commonData: data.commonData
                 })
             })
+        }
+
+        window.onbeforeunload = () => {
+            updateThisData(this.state.thisTask);
         }
     }
 
@@ -101,7 +105,6 @@ export default class App extends Component {
         localStorage.setItem('currentTask', data.h1);
 
         updateH1(data, oldText,(data) => {
-            console.log(data.thisTask, data.commonData)
             this.setState({
                 thisTask: data.thisTask,
                 commonData: data.commonData
@@ -285,7 +288,7 @@ export default class App extends Component {
                                             h2="Чеклист"
                                             type="checklist"
                                             id="commonChecklist"
-                                            data={commonData.checklist}
+                                            data={thisTask.commonChecklist}
                                         />
                                     </TabPanel>
                                 </Tabs>

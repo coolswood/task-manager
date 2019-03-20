@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Timer from 'react-timer'
+import Timer from './Timer'
 
 import {Context} from "../../context";
 
@@ -16,7 +16,11 @@ export default class TimerComponent extends Component {
 
     render() {
         const { thisTask } = this.context;
-        const OPTIONS = { delay: 1000, autoplay: false, startTime: thisTask.timer || 0};
+        const OPTIONS = {
+            delay: 1000,
+            autoplay: false,
+            startTime: thisTask.timer || 0
+        };
 
         return (
             <Timer updateTimer={this.updateTimer} options={OPTIONS} />
