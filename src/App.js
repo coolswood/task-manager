@@ -20,6 +20,7 @@ export default class App extends Component {
             thisErrorList: [],
             thisFindList: [],
             checklist: {},
+            commonChecklist: {},
             timer: 0
         },
         commonData: {
@@ -69,7 +70,7 @@ export default class App extends Component {
     deleteTask = (text) => {
         deleteTask(text,(data) => {
             this.setState({
-                thisTask: data.thisTask,
+                thisTask: {...data.thisTask, commonChecklist: this.state.commonData.checklist},
                 commonData: data.commonData
             })
         })
@@ -118,6 +119,7 @@ export default class App extends Component {
                 h1: "Напишите название",
                 thisErrorList: [],
                 thisFindList: [],
+                commonChecklist: this.state.commonData.checklist,
                 checklist: {}
             }
         })
@@ -184,44 +186,38 @@ export default class App extends Component {
     };
 
     toggleChecklist = (text, id) => {
-        const { thisTask, commonData } = this.state;
+        const { thisTask } = this.state;
 
-        let data = {};
+        let toggled;
 
         if(id === 'localChecklist') {
-            let toggled = thisTask.checklist;
-            toggled[text] = !toggled[text];
-
-            data = {...thisTask, toggled};
-
-            updateThisData(data);
-
-            this.setState({
-                thisTask: data
-            })
+            toggled = thisTask.checklist;
         } else {
-            let toggled = commonData.checklist;
-            toggled[text] = !toggled[text];
-
-            data = {...commonData, toggled};
-
-            updateCommonData(data);
-
-            this.setState({
-                commonData: data
-            })
+            toggled = thisTask.commonChecklist;
         }
+
+        toggled[text] = !toggled[text];
+
+        let data = {...thisTask, toggled};
+
+        updateThisData(data);
+
+        this.setState({
+            thisTask: data
+        })
     };
 
     addCommonChecklist = (text) => {
-        const { commonData } = this.state;
+        const { thisTask, commonData } = this.state;
+        let newChecklist = {...commonData.checklist, [text]: false};
 
-        let data = {...commonData, checklist: {...commonData.checklist, [text]: false}};
+        let data = {...commonData, checklist: newChecklist};
 
         updateCommonData(data);
 
         this.setState({
-            commonData: data
+            commonData: data,
+            thisTask: {...thisTask, commonChecklist: newChecklist}
         })
     };
 

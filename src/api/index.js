@@ -5,6 +5,7 @@ let newThisItem = {
     thisErrorList: [],
     thisFindList: [],
     checklist: {},
+    commonChecklist: {},
     timer: 0
 };
 
@@ -41,9 +42,9 @@ export const getData = (taskName, callback) => {
                 let cursor = e.target.result;
 
                 if(!event.target.result) {
-                    callback({thisTask: newThisItem, commonData: cursor.value})
+                    callback({thisTask: {...newThisItem, commonChecklist: cursor.value.checklist}, commonData: cursor.value})
                 } else {
-                    callback({thisTask: event.target.result, commonData: cursor.value})
+                    callback({thisTask: {...event.target.result, commonChecklist: {...cursor.value.checklist, ...event.target.result.commonChecklist}}, commonData: cursor.value})
                 }
             };
         };
@@ -98,7 +99,7 @@ export const changeTask = (taskName, callback) => {
         objectStore.openCursor().onsuccess = function (e) {
             let cursor = e.target.result;
 
-            callback({thisTask: event.target.result, commonData: cursor.value})
+            callback({thisTask: {...event.target.result, commonChecklist: {...cursor.value.checklist, ...event.target.result.commonChecklist}}, commonData: cursor.value})
         };
     };
 };
@@ -173,9 +174,9 @@ export const deleteItemTask = (text, type, thisTask, callback) => {
     if(type === 'localChecklist') {
         objectStore.openCursor().onsuccess = () => {
             delete thisTask.checklist[text[1]];
-            objectStore.put({...thisTask, thisTask: thisTask})
+            objectStore.put(thisTask);
 
-            callback({thisTask: {...thisTask, thisTask: thisTask}})
+            callback({thisTask: thisTask})
         }
     }
 
@@ -188,7 +189,7 @@ export const deleteItemTask = (text, type, thisTask, callback) => {
 
             common.put(cursor);
 
-            callback({commonData: cursor})
+            callback({thisTask: {...thisTask, commonChecklist: {...thisTask, ...cursor.commonChecklist}}, commonData: cursor})
         }
     }
 
