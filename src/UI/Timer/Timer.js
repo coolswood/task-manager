@@ -83,9 +83,27 @@ export default class Timer extends Component {
         <h3 style={secondsStyles} className="seconds"> {this.state.time || defaultTime} {prefix}</h3>
         <br />
         <div style={buttonsStyle} className="react-timer__buttons">
-          {reset && <Ripples color={rippleColor} during={rippleDuring} style={buttonStyle} onClick={this.reset.bind(this)}><span>{reset}</span></Ripples>}
-          {play && <Ripples color={rippleColor} during={rippleDuring} style={buttonStyle} onClick={this.play.bind(this)}><span>{play}</span></Ripples>}
-          {pause && <Ripples color={rippleColor} during={rippleDuring} style={buttonStyle} onClick={this.pause.bind(this)}><span>{pause}</span></Ripples>}
+          {reset && <Ripples
+              className="react-timer__button"
+              color={rippleColor}
+              during={rippleDuring}
+              style={buttonStyle}
+              onClick={this.reset.bind(this)}
+          ><button>{reset}</button></Ripples>}
+          {play && <Ripples
+              className="react-timer__button"
+              color={rippleColor}
+              during={rippleDuring}
+              style={buttonStyle}
+              onClick={this.play.bind(this)}
+          ><button>{play}</button></Ripples>}
+          {pause && <Ripples
+              className="react-timer__button"
+              color={rippleColor}
+              during={rippleDuring}
+              style={buttonStyle}
+              onClick={this.pause.bind(this)}
+          ><button>{pause}</button></Ripples>}
         </div>
       </div>
     )

@@ -7,6 +7,7 @@ import Page from './UI/Page'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import TimerComponent from './UI/Timer';
 import "react-tabs/style/react-tabs.css";
+import { CSSTransition } from 'react-transition-group';
 
 import AddEvent from './components/AddEvent'
 import Header from './components/Header'
@@ -28,7 +29,8 @@ export default class App extends Component {
             allHeaders: [],
             checklist: {},
             errors: {}
-        }
+        },
+        load: false
     };
 
     componentDidMount() {
@@ -41,7 +43,12 @@ export default class App extends Component {
                 this.setState({
                     thisTask: data.thisTask,
                     commonData: data.commonData
-                })
+                });
+                setTimeout(() => {
+                    this.setState({
+                        load: true
+                    })
+                }, 500)
             })
         }
 
@@ -242,70 +249,77 @@ export default class App extends Component {
             }}>
                 <div className="background" />
                 <div className="app">
-                    <div className="wrapper">
-                        <Nav headers={commonData.allHeaders} />
-                        <Header />
-                        <section>
-                            <main>
-                                <Page className="timer-wrap">
-                                    <div className="timer">
-                                        <TimerComponent />
-                                    </div>
-                                </Page>
-                                <Page>
-                                    <AddEvent
-                                        h2="Все ошибки"
-                                        type="mistakes"
-                                        data={commonData.errors}
-                                    />
-                                </Page>
-                            </main>
-                            <aside>
-                                <Page>
-                                    <AddEvent
-                                        h2="Добавить ошибку"
-                                        type='ordinar'
-                                        id="addMistake"
-                                        color={'error'}
-                                        data={thisTask.thisErrorList}
-                                    />
-                                </Page>
-                                <Page>
-                                    <AddEvent
-                                        h2="Нашел ошибку"
-                                        type='ordinar'
-                                        id="findMistake"
-                                        color={'check'}
-                                        data={thisTask.thisFindList}
-                                    />
-                                </Page>
-                                <Page className="no-padding">
-                                    <Tabs>
-                                        <TabList>
-                                            <Tab>Чеклист задачи</Tab>
-                                            <Tab>Чеклист</Tab>
-                                        </TabList>
-                                        <TabPanel>
-                                            <AddEvent
-                                                h2="Чеклист задачи"
-                                                type="checklist"
-                                                id="localChecklist"
-                                                data={thisTask.checklist}
-                                            />
-                                        </TabPanel>
-                                        <TabPanel>
-                                            <AddEvent
-                                                h2="Чеклист"
-                                                type="checklist"
-                                                id="commonChecklist"
-                                                data={thisTask.commonChecklist}
-                                            />
-                                        </TabPanel>
-                                    </Tabs>
-                                </Page>
-                            </aside>
-                        </section>
-                    </div>
+                    <CSSTransition
+                        in={this.state.load}
+                        timeout={700}
+                        classNames="load"
+                        unmountOnExit
+                    >
+                        <div className="wrapper">
+                            <Nav headers={commonData.allHeaders} />
+                            <Header />
+                            <section>
+                                <main>
+                                    <Page className="timer-wrap">
+                                        <div className="timer">
+                                            <TimerComponent />
+                                        </div>
+                                    </Page>
+                                    <Page>
+                                        <AddEvent
+                                            h2="Все ошибки"
+                                            type="mistakes"
+                                            data={commonData.errors}
+                                        />
+                                    </Page>
+                                </main>
+                                <aside>
+                                    <Page>
+                                        <AddEvent
+                                            h2="Добавить ошибку"
+                                            type='ordinar'
+                                            id="addMistake"
+                                            color={'error'}
+                                            data={thisTask.thisErrorList}
+                                        />
+                                    </Page>
+                                    <Page>
+                                        <AddEvent
+                                            h2="Нашел ошибку"
+                                            type='ordinar'
+                                            id="findMistake"
+                                            color={'check'}
+                                            data={thisTask.thisFindList}
+                                        />
+                                    </Page>
+                                    <Page className="no-padding">
+                                        <Tabs>
+                                            <TabList>
+                                                <Tab>Чеклист задачи</Tab>
+                                                <Tab>Чеклист</Tab>
+                                            </TabList>
+                                            <TabPanel>
+                                                <AddEvent
+                                                    h2="Чеклист задачи"
+                                                    type="checklist"
+                                                    id="localChecklist"
+                                                    data={thisTask.checklist}
+                                                />
+                                            </TabPanel>
+                                            <TabPanel>
+                                                <AddEvent
+                                                    h2="Чеклист"
+                                                    type="checklist"
+                                                    id="commonChecklist"
+                                                    data={thisTask.commonChecklist}
+                                                />
+                                            </TabPanel>
+                                        </Tabs>
+                                    </Page>
+                                </aside>
+                            </section>
+                        </div>
+                    </CSSTransition>
                 </div>
             </Context.Provider>
         );

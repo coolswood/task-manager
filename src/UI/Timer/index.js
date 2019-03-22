@@ -58,7 +58,7 @@ export default class TimerComponent extends Component {
             play: 'Старт',
             pause: 'Пауза',
             reset: 'Очистить',
-            rippleColor: "white",
+            rippleColor: "#ffffff40",
             rippleDuring: 1000
         };
 

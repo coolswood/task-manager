@@ -1,5 +1,10 @@
 @import '../../constants/constants.sass'
 
+.nav-head
+  width: 100%
+  height: 150px
+  background: $fiolet
+
 .main-nav
   position: absolute
   top: 0
@@ -7,22 +12,23 @@
   width: 400px
   height: 100vh
   background: $white
-  padding-top: 35px
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
   transition: left 0.5s
   z-index: 10
 
   .nav-item
-    width: calc(100% - 40px)
-    height: 30px
-    margin: 0 20px
+    width: calc(100% - 20px)
+    text-align: left
+    height: 35px
+    margin: 0 10px
     background: none
     border: none
     position: relative
-    border-bottom: 1px solid $light-gray
     padding: 0 20px
-    font-size: 1em
+    font-size: 14px
+    font-weight: 500
     color: #000
+    cursor: pointer
     &--active
       font-weight: 700
 
@@ -39,15 +45,15 @@
 
 .burger-close
   position: absolute
-  right: 10px
-  top: 10px
+  right: 30px
+  top: 40px
   width: 32px
   height: 32px
-  opacity: 0.3
+  opacity: 1
   cursor: pointer
 
   &:hover
-    opacity: 1
+    opacity: 0.3
 
   &:before, &:after
     position: absolute
@@ -55,7 +61,7 @@
     content: ' '
     height: 33px
     width: 2px
-    background-color: #333
+    background-color: #fff
 
   &:before
     transform: rotate(45deg)

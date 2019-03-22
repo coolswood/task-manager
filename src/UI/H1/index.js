@@ -31,9 +31,11 @@ export default class H1 extends Component {
 
         if((e && e.keyCode === 13) || !e) {
             changeH1(text);
-            this.setState({
-                edit: false
-            })
+            setTimeout(() => {
+                this.setState({
+                    edit: false
+                })
+            }, 0)
         }
     };
 

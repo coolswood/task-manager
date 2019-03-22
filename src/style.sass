@@ -13,18 +13,6 @@ h2
   font-size: 20px
   margin-bottom: 15px
 
-button.ordinar
-  cursor: pointer
-  background-color: $light-green
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.24)
-  border-radius: 30px
-  padding: 10px 40px
-  color: $white
-  border: none
-  font-size: 14px
-  text-transform: uppercase
-  letter-spacing: 0.42px
-
 input
   font-size: 1.2rem
 
@@ -40,13 +28,35 @@ input
 .wrapper
   max-width: 1300px
   margin: 0 auto
+  transition: 1s
 .app
   position: relative
   padding: 0 20px
   margin-bottom: 20px
   min-height: 100vh
+  .timer-wrap
+    padding: 30px
+    flex-shrink: 0
   input
-    padding-left: 10px !important
+    padding-left: 15px !important
+  button
+    border: none
+    background: none
+    color: inherit
+    text-transform: inherit
+    font-size: inherit
+    letter-spacing: inherit
+  button.ordinar
+    cursor: pointer
+    background-color: $light-green
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.24)
+    border-radius: 30px
+    padding: 10px 40px
+    color: $white
+    border: none
+    font-size: 14px
+    text-transform: uppercase
+    letter-spacing: 0.42px
   section
     display: flex
   main, aside
@@ -92,3 +102,24 @@ input
       .react-tabs__tab
         padding: 20px
         border: none
+
+.load-enter
+  opacity: 0.01
+
+.load-enter-active
+  opacity: 1
+  transition: all 700ms ease-out
+
+.load-exit
+  opacity: 1
+
+.load-exit-active
+  opacity: 0.01
+  transition: all 700ms ease-out
+
+.react-customscroll-scrollbar-area
+  background: none !important
+  .react-customscroll-scrollbar
+    background: rgba(174, 174, 174, 0.41) !important
+    &:hover
+      background: rgba(174, 174, 174, 0.81) !important

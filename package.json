@@ -6,12 +6,14 @@
     "electron-is-dev": "^1.0.1",
     "node-sass": "^4.11.0",
     "react": "^16.8.3",
+    "react-customscroll": "^4.0.6",
     "react-dom": "^16.8.3",
     "react-outside-click-handler": "^1.2.2",
     "react-ripples": "^1.1.2",
     "react-scripts": "2.1.5",
     "react-tabs": "^3.0.0",
-    "react-timer": "https://github.com/coolswood/react-timer.git"
+    "react-timer": "https://github.com/coolswood/react-timer.git",
+    "react-transition-group": "^2.7.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -45,7 +47,7 @@
       "target": [
         "portable"
       ],
-      "icon": "public/documentedit.ico"
+      "icon": "public/favicon.ico"
     },
     "portable": {
       "artifactName": "task-manager.exe"
