@@ -1,7 +1,7 @@
 @import '../../constants/constants.sass'
 
 .add-event
-
+  padding: 20px
   .list
 
   .list-item
@@ -25,17 +25,31 @@
     display: flex
     align-items: center
     position: relative
-    &:hover
-      background: $check
-      cursor: pointer
+    cursor: pointer
+    border-bottom: 1px solid #e0e0e0
 
     .scroller-wrap
-      margin-left: 30px
+      margin-left: 40px
 
     .check-sign
       font-size: 0
       position: absolute
       left: 10px
+      width: 20px
+      height: 20px
+      border: 1px solid #bdbdbd
+      border-radius: 3px
+      margin-right: 10px
+
+    .check-sign__checked
+      border: none
+      background: $fiolet
+      font-size: 15px
+      line-height: 3
+      color: $white
+      display: flex
+      justify-content: center
+      align-items: center
 
   .list-item__mistakes
     display: flex

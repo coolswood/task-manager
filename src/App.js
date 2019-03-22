@@ -279,7 +279,7 @@ export default class App extends Component {
                                         data={thisTask.thisFindList}
                                     />
                                 </Page>
-                                <Page>
+                                <Page className="no-padding">
                                     <Tabs>
                                         <TabList>
                                             <Tab>Чеклист задачи</Tab>

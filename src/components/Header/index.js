@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 import H1 from '../../UI/H1'
 
-import Page from '../../UI/Page';
-
 import './style.sass';
 
 import {Context} from '../../context';

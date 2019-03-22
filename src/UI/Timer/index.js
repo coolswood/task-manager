@@ -38,7 +38,8 @@ export default class TimerComponent extends Component {
             fontSize: 14,
             textTransform: "uppercase",
             letterSpacing: "0.42px",
-            cursor: "pointer"
+            cursor: "pointer",
+            textAlign: "center"
         };
 
         const secondsStyles = {
@@ -56,7 +57,9 @@ export default class TimerComponent extends Component {
             startTime: thisTask.timer || 0,
             play: 'Старт',
             pause: 'Пауза',
-            reset: 'Очистить'
+            reset: 'Очистить',
+            rippleColor: "white",
+            rippleDuring: 1000
         };
 
         return (

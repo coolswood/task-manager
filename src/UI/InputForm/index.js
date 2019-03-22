@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Ripples from 'react-ripples'
 
 import './style.sass';
 
@@ -52,7 +53,13 @@ export default class Index extends Component {
                         })}
                     </datalist>
                 </div>
-                <button className="ordinar" type="submit" variant="outline-primary">Добавить</button>
+                <Ripples
+                    style={{borderRadius: 40}}
+                    during="1000"
+                    color="#ffffff40"
+                >
+                    <button className="ordinar" type="submit" variant="outline-primary">Добавить</button>
+                </Ripples>
             </form>
         );
     }

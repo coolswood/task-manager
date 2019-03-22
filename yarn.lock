@@ -8799,6 +8799,14 @@ react-outside-click-handler@^1.2.2:
     object.values "^1.1.0"
     prop-types "^15.7.2"
 
+react-ripples@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/react-ripples/-/react-ripples-1.1.2.tgz#059420c253b5b28255ddff4153eae9e00c2963f4"
+  integrity sha512-6lddMHlZUSseT26S/UfdcrW9jK5bzTQ7HKAgh8HMwiHxxjGQXhHvTF5Vu7mzRvNKw4h4ijvzoCBEPZqM93Hf3A==
+  dependencies:
+    prop-types "^15.6.0"
+    react "^16.2.0"
+
 react-scripts@2.1.5:
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/react-scripts/-/react-scripts-2.1.5.tgz#0740507db0a06d518c231caa1ef4e908bd8ebce5"
@@ -8868,7 +8876,7 @@ react-tabs@^3.0.0:
   dependencies:
     prop-types "^15.6.0"
 
-react@^16.8.3:
+react@^16.2.0, react@^16.8.3:
   version "16.8.4"
   resolved "https://registry.yarnpkg.com/react/-/react-16.8.4.tgz#fdf7bd9ae53f03a9c4cd1a371432c206be1c4768"
   integrity sha512-0GQ6gFXfUH7aZcjGVymlPOASTuSjlQL4ZtVC5YKH+3JL6bBLCVO21DknzmaPlI90LN253ojj02nsapy+j7wIjg==

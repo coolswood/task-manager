@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import SecondsTohhmmss from './SecondsTohhmmss'
 import PropTypes from 'prop-types'
+import Ripples from 'react-ripples'
 
 let offset = null, interval = null;
 const defaultTime = '00:00:00';
@@ -75,16 +76,16 @@ export default class Timer extends Component {
 
   render() {
     const { timerStyle, secondsStyles, buttonsStyle, buttonStyle, prefix, options } = this.props;
-    const { play, pause, reset } = options;
+    const { play, pause, reset, rippleColor, rippleDuring } = options;
 
     return (
       <div style={timerStyle} className="react-timer">
         <h3 style={secondsStyles} className="seconds"> {this.state.time || defaultTime} {prefix}</h3>
         <br />
         <div style={buttonsStyle} className="react-timer__buttons">
-          {reset && <button onClick={this.reset.bind(this)} style={buttonStyle}>{reset}</button>}
-          {play && <button onClick={this.play.bind(this)} style={buttonStyle}>{play}</button>}
-          {pause && <button onClick={this.pause.bind(this)} style={buttonStyle}>{pause}</button>}
+          {reset && <Ripples color={rippleColor} during={rippleDuring} style={buttonStyle} onClick={this.reset.bind(this)}><span>{reset}</span></Ripples>}
+          {play && <Ripples color={rippleColor} during={rippleDuring} style={buttonStyle} onClick={this.play.bind(this)}><span>{play}</span></Ripples>}
+          {pause && <Ripples color={rippleColor} during={rippleDuring} style={buttonStyle} onClick={this.pause.bind(this)}><span>{pause}</span></Ripples>}
         </div>
       </div>
     )
