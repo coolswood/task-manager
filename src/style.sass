@@ -2,7 +2,7 @@
 
 *
   outline: none !important
-  font-family: Arial, sans-serif
+  font-family: Roboto, sans-serif
   margin: 0
   padding: 0
 
@@ -10,16 +10,20 @@ h1, h2, h3
   font-weight: 500
 
 h2
-  font-size: 1.6rem
+  font-size: 20px
   margin-bottom: 15px
 
-button
+button.ordinar
   cursor: pointer
-  background: none
+  background-color: $light-green
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.24)
+  border-radius: 30px
+  padding: 10px 40px
+  color: $white
   border: none
-  padding: 11px 15px
-  background: #009688
-  color: #fff
+  font-size: 14px
+  text-transform: uppercase
+  letter-spacing: 0.42px
 
 input
   font-size: 1.2rem
@@ -33,10 +37,14 @@ input
   top: 0
   left: 0
   z-index: -1
+.wrapper
+  max-width: 1300px
+  margin: 0 auto
 .app
   position: relative
   padding: 0 20px
   margin-bottom: 20px
+  min-height: 100vh
   input
     padding-left: 10px !important
   section

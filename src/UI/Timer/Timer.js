@@ -74,16 +74,18 @@ export default class Timer extends Component {
   };
 
   render() {
-    const { timerStyle, secondsStyles, buttonStyle, prefix, options } = this.props;
+    const { timerStyle, secondsStyles, buttonsStyle, buttonStyle, prefix, options } = this.props;
     const { play, pause, reset } = options;
 
     return (
       <div style={timerStyle} className="react-timer">
         <h3 style={secondsStyles} className="seconds"> {this.state.time || defaultTime} {prefix}</h3>
         <br />
-        {reset && <button onClick={this.reset.bind(this)} style={buttonStyle}>{reset}</button>}
-        {play && <button onClick={this.play.bind(this)} style={buttonStyle}>{play}</button>}
-        {pause && <button onClick={this.pause.bind(this)} style={buttonStyle}>{pause}</button>}
+        <div style={buttonsStyle} className="react-timer__buttons">
+          {reset && <button onClick={this.reset.bind(this)} style={buttonStyle}>{reset}</button>}
+          {play && <button onClick={this.play.bind(this)} style={buttonStyle}>{play}</button>}
+          {pause && <button onClick={this.pause.bind(this)} style={buttonStyle}>{pause}</button>}
+        </div>
       </div>
     )
   }

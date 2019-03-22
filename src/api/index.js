@@ -186,10 +186,11 @@ export const deleteItemTask = (text, type, thisTask, callback) => {
         common.openCursor().onsuccess = (event) => {
             let cursor = event.target.result.value;
             delete cursor.checklist[text[1]];
+            delete thisTask.commonChecklist[text[1]];
 
             common.put(cursor);
 
-            callback({thisTask: {...thisTask, commonChecklist: {...thisTask, ...cursor.commonChecklist}}, commonData: cursor})
+            callback({thisTask: {...thisTask, commonChecklist: {...thisTask.commonChecklist, ...cursor.commonChecklist}}, commonData: cursor})
         }
     }
 

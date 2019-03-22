@@ -52,7 +52,7 @@ export default class Index extends Component {
                         })}
                     </datalist>
                 </div>
-                <button type="submit" variant="outline-primary">Добавить</button>
+                <button className="ordinar" type="submit" variant="outline-primary">Добавить</button>
             </form>
         );
     }

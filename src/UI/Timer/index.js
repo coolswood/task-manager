@@ -22,22 +22,31 @@ export default class TimerComponent extends Component {
             padding: "1em"
         };
 
+        const buttonsStyle = {
+            display: "flex"
+        };
+
         const buttonStyle = {
             background: "#fff",
-            color: "#666",
-            border: "1px solid #ddd",
-            marginRight: "5px",
-            padding: "10px",
-            fontWeight: "200",
-            width: 80
+            color: "#8e44ad",
+            borderRadius: "30px",
+            border: "1px solid #8e44ad",
+            margin: "0 5px",
+            padding: "10px 40px",
+            fontWeight: "400",
+            width: "100%",
+            fontSize: 14,
+            textTransform: "uppercase",
+            letterSpacing: "0.42px",
+            cursor: "pointer"
         };
 
         const secondsStyles = {
-            fontSize: "200%",
-            fontWeight: "200",
-            lineHeight: "1.5",
+            fontSize: "64px",
+            fontWeight: "400",
+            lineHeight: "75px",
             margin: "0",
-            color: "#666",
+            color: "#312f2f",
             textAlign: 'center'
         };
 
@@ -55,6 +64,7 @@ export default class TimerComponent extends Component {
                 updateTimer={this.updateTimer}
                 options={OPTIONS}
                 timerStyle={timerStyle}
+                buttonsStyle={buttonsStyle}
                 buttonStyle={buttonStyle}
                 secondsStyles={secondsStyles}
             />
