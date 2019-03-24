@@ -21,7 +21,7 @@ export default class AddEvent extends Component {
 
     render() {
         const { h2, color, type, data, id } = this.props;
-console.log(this.state.dataLength)
+
         return (
             <div className="add-event">
                 <h2>{h2}</h2>

@@ -5,6 +5,7 @@ import { getData, updateCommonData, updateThisData, updateH1, changeTask, delete
 import Page from './UI/Page'
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import Gists from './UI/Gists';
 import TimerComponent from './UI/Timer';
 import "react-tabs/style/react-tabs.css";
 import { CSSTransition } from 'react-transition-group';
@@ -50,6 +51,12 @@ export default class App extends Component {
                     })
                 }, 500)
             })
+        } else {
+            setTimeout(() => {
+                this.setState({
+                    load: true
+                })
+            }, 500)
         }
 
         window.onbeforeunload = () => {
@@ -249,6 +256,7 @@ export default class App extends Component {
             }}>
                 <div className="background" />
                 <div className="app">
+                    <Gists />
                     <CSSTransition
                         in={this.state.load}
                         timeout={700}

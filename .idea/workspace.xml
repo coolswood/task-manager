@@ -2,23 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="477db968-e10f-49be-87bd-cb0c103dd19d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/UI/Gists/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UI/Gists/style.sass" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UI/H1/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/H1/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UI/H1/style.sass" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/H1/style.sass" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Page/style.sass" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Page/style.sass" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Timer/Timer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Timer/Timer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Timer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Timer/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/InputForm/style.sass" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/InputForm/style.sass" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UI/Timer/style.sass" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Timer/style.sass" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AddEvent/components/ListItem/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddEvent/components/ListItem/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/AddEvent/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddEvent/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/AddEvent/style.sass" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddEvent/style.sass" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Header/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Header/style.sass" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/style.sass" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Nav/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Nav/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Nav/style.sass" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Nav/style.sass" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/img/bg.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/bg.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/style.sass" beforeDir="false" afterPath="$PROJECT_DIR$/src/style.sass" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
@@ -42,69 +37,59 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="255" column="37" lean-forward="true" selection-start-line="255" selection-start-column="37" selection-end-line="255" selection-end-column="37" />
+            <state relative-caret-position="485">
+              <caret line="259" column="29" lean-forward="true" selection-start-line="259" selection-start-column="29" selection-end-line="259" selection-end-column="29" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UI/Gists/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="372">
+              <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UI/Gists/style.sass">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="279">
+              <caret line="18" column="17" lean-forward="true" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/style.sass">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-177">
+              <caret line="40" column="22" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/style.sass">
+        <entry file="file://$PROJECT_DIR$/src/UI/InputForm/style.sass">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="122" column="39" selection-start-line="122" selection-start-column="39" selection-end-line="122" selection-end-column="39" />
+            <state relative-caret-position="372">
+              <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package.json">
+        <entry file="file://$PROJECT_DIR$/src/UI/Timer/style.sass">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="8" selection-start-line="8" selection-end-line="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/favicon.ico">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="4" column="52" selection-start-line="4" selection-start-column="52" selection-end-line="4" selection-end-column="52" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/ico.ico">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build/static/css/main.7ce7b73e.chunk.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="31">
-              <caret line="1" column="51" selection-start-line="1" selection-start-column="51" selection-end-line="1" selection-end-column="51" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/AddEvent/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="17" column="76" selection-start-line="17" selection-start-column="76" selection-end-line="17" selection-end-column="76" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="133">
+              <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -112,8 +97,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/AddEvent/style.sass">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+            <state relative-caret-position="186">
+              <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -121,11 +106,32 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/AddEvent/components/ListItem/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-713">
-              <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+            <state relative-caret-position="222">
+              <caret line="17" column="52" lean-forward="true" selection-start-line="17" selection-start-column="52" selection-end-line="17" selection-end-column="52" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UI/H1/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="124">
+              <caret line="31" selection-start-line="31" selection-end-line="31" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UI/H1/style.sass">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="248">
+              <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -142,12 +148,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>add</find>
-      <find>deleteItemTask</find>
-      <find>updateCommonData</find>
-      <find>TimerComponent</find>
-      <find>Timer</find>
-      <find>button</find>
       <find>app</find>
       <find>burger-open</find>
       <find>list-item__mistakes</find>
@@ -166,12 +166,18 @@
       <find>Нету</find>
       <find>.nav-item</find>
       <find>.page</find>
-      <find>h1-wrapper</find>
       <find>10px !important</find>
       <find>Все ошибки</find>
       <find>bg</find>
-      <find>.list</find>
       <find>timer-wrap</find>
+      <find>localStorage</find>
+      <find>.list</find>
+      <find>console</find>
+      <find>h1-wrapper</find>
+      <find>&quot;gists</find>
+      <find>.form</find>
+      <find>react-timer__button</find>
+      <find>height: 25px</find>
     </findStrings>
     <replaceStrings>
       <replace>strokeWdth</replace>
@@ -192,8 +198,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/UI/Page/index.js" />
-        <option value="$PROJECT_DIR$/src/context/checklist.js" />
         <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/src/context/index.js" />
         <option value="$PROJECT_DIR$/src/helpers/api.js" />
@@ -220,12 +224,9 @@
         <option value="$PROJECT_DIR$/build/static/css/main.eab2e9a3.chunk.css" />
         <option value="$PROJECT_DIR$/build/static/css/main.76ce78cc.chunk.css" />
         <option value="$PROJECT_DIR$/src/api/index.js" />
-        <option value="$PROJECT_DIR$/src/UI/InputForm/style.sass" />
         <option value="$PROJECT_DIR$/src/constants/constants.sass" />
         <option value="$PROJECT_DIR$/build/static/css/main.1563da71.chunk.css" />
-        <option value="$PROJECT_DIR$/src/components/AddEvent/components/ListItem/index.js" />
         <option value="$PROJECT_DIR$/src/UI/InputForm/index.js" />
-        <option value="$PROJECT_DIR$/src/UI/Timer/style.sass" />
         <option value="$PROJECT_DIR$/src/UI/Timer/index.js" />
         <option value="$PROJECT_DIR$/src/components/Header/index.js" />
         <option value="$PROJECT_DIR$/src/UI/Timer/Timer.js" />
@@ -233,22 +234,26 @@
         <option value="$PROJECT_DIR$/src/components/Nav/style.sass" />
         <option value="$PROJECT_DIR$/src/components/Header/style.sass" />
         <option value="$PROJECT_DIR$/src/UI/Page/style.sass" />
-        <option value="$PROJECT_DIR$/src/UI/H1/index.js" />
-        <option value="$PROJECT_DIR$/src/UI/H1/style.sass" />
         <option value="$PROJECT_DIR$/build/index.html" />
         <option value="$PROJECT_DIR$/build/static/css/main.7ce7b73e.chunk.css" />
         <option value="$PROJECT_DIR$/public/index.html" />
-        <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/src/components/AddEvent/style.sass" />
         <option value="$PROJECT_DIR$/src/components/AddEvent/index.js" />
+        <option value="$PROJECT_DIR$/src/UI/Timer/style.sass" />
+        <option value="$PROJECT_DIR$/src/components/AddEvent/style.sass" />
+        <option value="$PROJECT_DIR$/src/components/AddEvent/components/ListItem/index.js" />
+        <option value="$PROJECT_DIR$/src/UI/H1/index.js" />
+        <option value="$PROJECT_DIR$/src/App.js" />
+        <option value="$PROJECT_DIR$/src/UI/Gists/style.sass" />
         <option value="$PROJECT_DIR$/src/style.sass" />
+        <option value="$PROJECT_DIR$/src/UI/H1/style.sass" />
+        <option value="$PROJECT_DIR$/src/UI/Gists/index.js" />
+        <option value="$PROJECT_DIR$/src/UI/InputForm/style.sass" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="6" />
-    <option name="y" value="150" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="103" />
     <option name="width" value="1791" />
     <option name="height" value="1040" />
   </component>
@@ -258,6 +263,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -270,11 +276,30 @@
               <item name="task-manager" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="task-manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="task-manager" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="UI" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="task-manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="task-manager" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="UI" type="462c0819:PsiDirectoryNode" />
+              <item name="Gists" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="task-manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="task-manager" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="UI" type="462c0819:PsiDirectoryNode" />
+              <item name="InputForm" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -290,17 +315,17 @@
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\coolswood\Desktop\task-manager\src\UI\Timer" />
-      <recent name="C:\Users\coolswood\Desktop\task-manager\src\UI\Scroller" />
-      <recent name="C:\Users\coolswood\Desktop\task-manager\src\components\AddEvent\components\ListItem" />
-      <recent name="C:\Users\coolswood\Desktop\task-manager\server\data" />
-      <recent name="C:\Users\coolswood\Desktop\task-manager\src\UI\H1" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\coolswood\Desktop\task-manager\public" />
       <recent name="C:\Users\coolswood\Desktop\task-manager\src\components\AddEvent\components" />
       <recent name="C:\Users\coolswood\Desktop\task-manager\src\UI\InputForm" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\coolswood\Desktop\task-manager\src\UI\Gists" />
+      <recent name="C:\Users\coolswood\Desktop\task-manager\src\UI\Timer" />
+      <recent name="C:\Users\coolswood\Desktop\task-manager\src\UI\Scroller" />
+      <recent name="C:\Users\coolswood\Desktop\task-manager\src\components\AddEvent\components\ListItem" />
+      <recent name="C:\Users\coolswood\Desktop\task-manager\server\data" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -394,7 +419,8 @@
       <workItem from="1552326276540" duration="7628000" />
       <workItem from="1553015905912" duration="8765000" />
       <workItem from="1553062120150" duration="18202000" />
-      <workItem from="1553236813207" duration="26325000" />
+      <workItem from="1553236813207" duration="31448000" />
+      <workItem from="1553412171367" duration="3573000" />
     </task>
     <task id="LOCAL-00001" summary="Добавлена базовая структура">
       <created>1550855126027</created>
@@ -550,11 +576,18 @@
       <option name="project" value="LOCAL" />
       <updated>1553253355520</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="redesign">
+      <created>1553269377996</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1553269377996</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="200122000" />
+    <option name="totallyTimeSpent" value="208818000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -566,16 +599,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="103" y="0" width="1791" height="1040" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17650159" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19110097" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32998884" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.39018953" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.39727584" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39910814" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -583,7 +616,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.5328874" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50052685" side_tool="true" weight="0.29208472" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49947312" visible="true" weight="0.29208472" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49947312" weight="0.29208472" />
       <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -654,8 +687,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="redesign" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/AddEvent/components/ListItem/delete.svg" />
-    <entry file="file://$PROJECT_DIR$/src/img/delete.svg" />
     <entry file="file://$USER_HOME$/Downloads/delete-button.svg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -733,20 +764,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/InputForm/style.sass">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/static/css/main.1563da71.chunk.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="31">
-          <caret line="1" column="51" lean-forward="true" selection-start-line="1" selection-start-column="51" selection-end-line="1" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/build/static/css/main.1563da71.chunk.css" />
     <entry file="file://$PROJECT_DIR$/build/common.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -769,23 +787,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/react-ripple-effect/src/js/components/react-ripple-button.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/Timer/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="60" column="35" selection-start-line="60" selection-start-column="35" selection-end-line="60" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-ripple-effect/src/js/components/react-ripple-button.js" />
     <entry file="file://$PROJECT_DIR$/src/UI/InputForm/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-527">
@@ -848,30 +850,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/H1/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="38" selection-start-line="38" selection-end-line="38" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/Timer/style.sass">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI/H1/style.sass">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -889,8 +867,12 @@
     <entry file="file://$PROJECT_DIR$/public/favicon.ico">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/ico.ico">
-      <provider selected="true" editor-type-id="images" />
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -899,44 +881,57 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/AddEvent/components/ListItem/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-713">
-          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/public/ico.ico">
+      <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
+    <entry file="file://$PROJECT_DIR$/src/components/AddEvent/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/AddEvent/style.sass">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="255" column="37" lean-forward="true" selection-start-line="255" selection-start-column="37" selection-end-line="255" selection-end-column="37" />
+        <state relative-caret-position="868">
+          <caret line="35" column="45" selection-start-line="35" selection-start-column="45" selection-end-line="35" selection-end-column="45" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/AddEvent/index.js">
+    <entry file="file://$PROJECT_DIR$/src/UI/Timer/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="17" column="76" selection-start-line="17" selection-start-column="76" selection-end-line="17" selection-end-column="76" />
+        <state relative-caret-position="916">
+          <caret line="60" column="35" selection-start-line="60" selection-start-column="35" selection-end-line="60" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/Timer/style.sass">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/AddEvent/style.sass">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/AddEvent/components/ListItem/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="17" column="52" lean-forward="true" selection-start-line="17" selection-start-column="52" selection-end-line="17" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="485">
+          <caret line="259" column="29" lean-forward="true" selection-start-line="259" selection-start-column="29" selection-end-line="259" selection-end-column="29" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
@@ -945,8 +940,49 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/style.sass">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="122" column="39" selection-start-line="122" selection-start-column="39" selection-end-line="122" selection-end-column="39" />
+        <state relative-caret-position="-177">
+          <caret line="40" column="22" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/Gists/style.sass">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="18" column="17" lean-forward="true" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/H1/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/H1/style.sass">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/Gists/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/InputForm/style.sass">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
         </state>
       </provider>
     </entry>

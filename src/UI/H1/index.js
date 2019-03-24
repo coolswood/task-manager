@@ -26,10 +26,13 @@ export default class H1 extends Component {
 
     saveVal = (e) => {
         if(!this.state.edit) return;
-        const { changeH1 } = this.context;
+        const { changeH1, thisTask } = this.context;
         let text = this.input.current.value;
 
         if((e && e.keyCode === 13) || !e) {
+            if(this.input.current.value === '') {
+                text = thisTask.h1
+            }
             changeH1(text);
             setTimeout(() => {
                 this.setState({
@@ -51,7 +54,7 @@ export default class H1 extends Component {
                 <div className="h1-wrapper">
                     {edit ?
                         <input ref={this.input} onKeyDown={this.saveVal} defaultValue={thisTask.h1} type="text"/> :
-                        <h1 onClick={this.toggleH1}>{thisTask.h1}</h1>
+                        <h1 onMouseOver={this.toggleH1}>{thisTask.h1}</h1>
                     }
                 </div>
             </OutsideClickHandler>
