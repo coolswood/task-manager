@@ -140,6 +140,13 @@ export default class App extends Component {
         })
     };
 
+    syncData = (data) => {
+        this.setState({
+            thisTask: data.thisTask,
+            commonData: data.commonData
+        })
+    };
+
     addNewMistake = (text) => {
         const { thisTask, commonData } = this.state;
 
@@ -256,7 +263,7 @@ export default class App extends Component {
             }}>
                 <div className="background" />
                 <div className="app">
-                    <Gists />
+                    <Gists syncData={this.syncData} />
                     <CSSTransition
                         in={this.state.load}
                         timeout={700}
@@ -282,24 +289,6 @@ export default class App extends Component {
                                     </Page>
                                 </main>
                                 <aside>
-                                    <Page>
-                                        <AddEvent
-                                            h2="Добавить ошибку"
-                                            type='ordinar'
-                                            id="addMistake"
-                                            color={'error'}
-                                            data={thisTask.thisErrorList}
-                                        />
-                                    </Page>
-                                    <Page>
-                                        <AddEvent
-                                            h2="Нашел ошибку"
-                                            type='ordinar'
-                                            id="findMistake"
-                                            color={'check'}
-                                            data={thisTask.thisFindList}
-                                        />
-                                    </Page>
                                     <Page className="no-padding">
                                         <Tabs>
                                             <TabList>
@@ -323,6 +312,24 @@ export default class App extends Component {
                                                 />
                                             </TabPanel>
                                         </Tabs>
+                                    </Page>
+                                    <Page>
+                                        <AddEvent
+                                            h2="Добавить ошибку"
+                                            type='ordinar'
+                                            id="addMistake"
+                                            color={'error'}
+                                            data={thisTask.thisErrorList}
+                                        />
+                                    </Page>
+                                    <Page>
+                                        <AddEvent
+                                            h2="Нашел ошибку"
+                                            type='ordinar'
+                                            id="findMistake"
+                                            color={'check'}
+                                            data={thisTask.thisFindList}
+                                        />
                                     </Page>
                                 </aside>
                             </section>

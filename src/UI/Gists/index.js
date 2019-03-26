@@ -1,15 +1,29 @@
 import React, { Component } from 'react';
 
-import Gists from 'gists';
+import Gist from 'gist-client';
+
+import { getAllData, syncData } from '../../api'
 
 import './style.sass';
 
+const gistClient = new Gist();
+
 export default class GistsComponent extends Component {
     state = {
-        login: null,
-        password: null,
-        show: false
+        id: null,
+        show: false,
+        isLogin: false
     };
+
+    componentDidMount() {
+        let distId = localStorage.getItem('gistId');
+
+        if(distId !== null) {
+            setTimeout(() => {
+                this.logIn(distId)
+            }, 3000)
+        }
+    }
 
     toggleShow = () => {
         this.setState({
@@ -23,37 +37,102 @@ export default class GistsComponent extends Component {
         })
     };
 
-    logIn = () => {
-        const {login, password} = this.state;
+    restore = () => {
+        gistClient.getOneById(localStorage.getItem('gistCurrent'))
+            .then(response => {
+                syncData(JSON.parse(response.files.ErrorList.content), (data) => {
+                    this.props.syncData(data)
+                })
+            }).catch(err => {
+            console.log(err)
+        })
+    };
 
-        const gists = new Gists({
-            username: login,
-            password: password
+    backup = () => {
+        getAllData(data => {
+            this.updateGist(data)
+        });
+    };
+
+    createGist = (fullData) => {
+        return gistClient.create({
+            "files": {
+                "ErrorList": {
+                    "content": JSON.stringify(fullData)
+                }
+            },
+            "description": "error",
+            "public": true
+        })
+    };
+
+    updateGist = (fullData) => {
+        gistClient.update(localStorage.getItem('gistCurrent'), {
+            "files": {
+                "ErrorList": {
+                    "content": JSON.stringify(fullData)
+                }
+            },
+            "description": "error",
+            "public": true
+        })
+    };
+
+    logIn = (id) => {
+        let fullData = {};
+
+        getAllData(data => {
+            fullData = data;
         });
 
-        gists.get()
-            .then(res => console.log(res.body))
-            .catch(console.error);
+        // 1e33e6fde6d54aaadfe85cec83372c11ed2e4b69
 
-        // localStorage.setItem('gists', data.body.id)
+        gistClient.setToken(id);
+
+        gistClient.getAll({filterBy: [
+                {filename: 'ErrorList'}
+            ]}).then((gistList) => {
+                localStorage.setItem('gistId', id);
+
+                if(gistList.length === 0) {
+                    this.createGist(fullData).then(newGist => {
+                        this.setState({
+                            isLogin: true
+                        })
+                    }).catch(error => {
+                        console.log(error, '2')
+                    })
+                } else {
+                    localStorage.setItem('gistCurrent', gistList[0].id);
+
+                    this.setState({
+                        isLogin: true
+                    });
+                }
+        }).catch(error => {
+            console.log(error, '1')
+        })
+
     };
 
     render() {
-        const { show } = this.state;
+        const { show, isLogin } = this.state;
 
         return (
             <div className="gists">
                 <img onClick={this.toggleShow} className="gists-img" src={require('../../img/github.png')} alt="gists"/>
                 {show && <div className="page gists-popap">
-                    <label>
-                        <span>Введите имя:</span>
-                        <input onChange={(e) => this.updateField('login', e)} type="text"/>
-                    </label>
-                    <label>
-                        <span>Введите пароль:</span>
-                        <input onChange={(e) => this.updateField('password', e)} type="text"/>
-                    </label>
-                    <button onClick={this.logIn} className="ordinar">Авторизоваться</button>
+                    {!isLogin && <div className="non-login">
+                        <label>
+                            <span>id:</span>
+                            <input onChange={(e) => this.updateField('id', e)} type="text"/>
+                        </label>
+                        <button onClick={() => this.logIn(this.state.id)} className="ordinar">Авторизоваться</button>
+                    </div>}
+                    {isLogin && <div className="login">
+                        <button onClick={this.backup} className="ordinar">backup</button>
+                        <button onClick={this.restore} className="ordinar">restore</button>
+                    </div>}
                 </div>}
             </div>
         )

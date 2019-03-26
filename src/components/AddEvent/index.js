@@ -23,7 +23,7 @@ export default class AddEvent extends Component {
         const { h2, color, type, data, id } = this.props;
 
         return (
-            <div className="add-event">
+            <div className={`add-event ${type === 'mistakes' ? 'add-event-mistake' : ''}`}>
                 <h2>{h2}</h2>
                 {type !== 'mistakes' && <InputForm type={type} id={id} />}
 

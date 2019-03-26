@@ -29,6 +29,55 @@ DBOpenRequest.onupgradeneeded = function(event) {
     commonData.put(newCommonItem)
 };
 
+export const getAllData = (callback) => {
+    let objectStore = db.transaction(["commonData"], "readwrite").objectStore('commonData');
+
+    objectStore.openCursor().onsuccess = (e) => {
+        let cursor = e.target.result.value;
+
+        let thisStore = db.transaction(["thisTask"], "readwrite").objectStore('thisTask');
+        let thisTasks = [];
+
+        thisStore.openCursor().onsuccess = (event) => {
+            let thisCursor = event.target.result;
+
+            if(thisCursor) {
+                thisTasks.push(thisCursor.value);
+
+                thisCursor.continue();
+            }
+        };
+
+        setTimeout(() => {
+            callback({thisTasks: thisTasks, commonData: cursor, currentTask: localStorage.getItem('currentTask')})
+        }, 3000)
+    };
+};
+
+export const syncData = (data, callback) => {
+    let objectStore = db.transaction(["commonData"], "readwrite").objectStore('commonData');
+
+    objectStore.clear();
+    objectStore.put(data.commonData);
+
+    let transaction = db.transaction(["thisTask"], "readwrite").objectStore("thisTask");
+
+    transaction.clear();
+    data.thisTasks.map(item => {
+        transaction.put(item);
+    });
+
+    localStorage.setItem('currentTask', data.currentTask);
+
+    let thisTask = data.thisTasks.filter(item => {
+        return item.h1 === data.currentTask
+    })[0];
+
+    callback({commonData: data.commonData, thisTask: thisTask})
+
+    // objectStore.clear()
+};
+
 export const getData = (taskName, callback) => {
 
     DBOpenRequest.onsuccess = (event) => {
