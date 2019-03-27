@@ -57,6 +57,7 @@ export default class AddEvent extends Component {
                                     key={i}
                                     id={id}
                                     i={i + 1}
+                                    isLast={Object.keys(data).length - 1 === i}
                                 />
                             })}
                         </CustomScroll>

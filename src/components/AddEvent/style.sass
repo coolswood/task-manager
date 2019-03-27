@@ -2,6 +2,18 @@
 
 .add-event
   padding: 20px
+  position: relative
+  &:after
+    content: ''
+    display: block
+    position: absolute
+    width: 90%
+    height: 2px
+    background: white
+    bottom: 20px
+  .react-customscroll-frame
+    display: flex
+    flex-direction: column
   .list
     overflow: hidden
     margin-top: 10px
@@ -22,6 +34,12 @@
 
     &--check
       color: $check
+
+  .checkbox__checked
+    order: 1000 !important
+    .scroller-text
+      color: $gray
+      text-decoration: line-through
 
   .list-item__checklist
     display: flex
@@ -58,6 +76,7 @@
     align-items: center
     font-size: 16px
     font-weight: 400
+    z-index: 1
 
     .mistake-cnt
       width: 30px

@@ -85,7 +85,7 @@ export default class GistsComponent extends Component {
             fullData = data;
         });
 
-        // 1e33e6fde6d54aaadfe85cec83372c11ed2e4b69
+        // 9ebbdf2b44d57308af81c18ef8f298cbe2c79250
 
         gistClient.setToken(id);
 
