@@ -12,17 +12,14 @@ export default class GistsComponent extends Component {
     state = {
         id: null,
         show: false,
-        isLogin: false
+        isLogin: false,
+        autFailed: false
     };
 
     componentDidMount() {
         let distId = localStorage.getItem('gistId');
 
-        if(distId !== null) {
-            setTimeout(() => {
-                this.logIn(distId)
-            }, 3000)
-        }
+        this.logIn(distId)
     }
 
     toggleShow = () => {
@@ -79,13 +76,6 @@ export default class GistsComponent extends Component {
     };
 
     logIn = (id) => {
-        let fullData = {};
-
-        getAllData(data => {
-            fullData = data;
-        });
-
-        // 9ebbdf2b44d57308af81c18ef8f298cbe2c79250
 
         gistClient.setToken(id);
 
@@ -95,13 +85,15 @@ export default class GistsComponent extends Component {
                 localStorage.setItem('gistId', id);
 
                 if(gistList.length === 0) {
-                    this.createGist(fullData).then(newGist => {
-                        this.setState({
-                            isLogin: true
+                    getAllData(fullData => {
+                        this.createGist(fullData).then(newGist => {
+                            this.setState({
+                                isLogin: true
+                            })
+                        }).catch(error => {
+                            console.log(error, '2')
                         })
-                    }).catch(error => {
-                        console.log(error, '2')
-                    })
+                    });
                 } else {
                     localStorage.setItem('gistCurrent', gistList[0].id);
 
@@ -110,28 +102,35 @@ export default class GistsComponent extends Component {
                     });
                 }
         }).catch(error => {
-            console.log(error, '1')
+            this.setState({
+                autFailed: true
+            })
         })
 
     };
 
     render() {
-        const { show, isLogin } = this.state;
+        const { show, isLogin, autFailed } = this.state;
 
         return (
             <div className="gists">
-                <img onClick={this.toggleShow} className="gists-img" src={require('../../img/github.png')} alt="gists"/>
+                <img onClick={this.toggleShow} className={`gists-img ${isLogin ? 'aut-pulse' : 'gists-img__non-aut'}`} src={require('../../img/github.png')} alt="gists"/>
                 {show && <div className="page gists-popap">
                     {!isLogin && <div className="non-login">
+                        <h2>Синхронизация с Gists</h2>
                         <label>
-                            <span>id:</span>
-                            <input onChange={(e) => this.updateField('id', e)} type="text"/>
+                            <span>GitHub token:</span>
+                            <input placeholder="9ebbdf2b44d57308af81c18ef8f298cbe2c79250" onChange={(e) => this.updateField('id', e)} type="text"/>
                         </label>
-                        <button onClick={() => this.logIn(this.state.id)} className="ordinar">Авторизоваться</button>
+                        {autFailed && <div className="error">Неверный токен</div>}
+                        <button onClick={() => this.logIn(this.state.id)} className="ordinar fiolet">Авторизоваться</button>
                     </div>}
                     {isLogin && <div className="login">
-                        <button onClick={this.backup} className="ordinar">backup</button>
-                        <button onClick={this.restore} className="ordinar">restore</button>
+                        <h2>Синхронизировано с Gists</h2>
+                        <div className="button-wrap">
+                            <button onClick={this.backup} className="ordinar fiolet">backup</button>
+                            <button onClick={this.restore} className="ordinar fiolet">restore</button>
+                        </div>
                     </div>}
                 </div>}
             </div>

@@ -45,12 +45,10 @@ export const getAllData = (callback) => {
                 thisTasks.push(thisCursor.value);
 
                 thisCursor.continue();
+            } else {
+                callback({thisTasks: thisTasks, commonData: cursor, currentTask: localStorage.getItem('currentTask')})
             }
         };
-
-        setTimeout(() => {
-            callback({thisTasks: thisTasks, commonData: cursor, currentTask: localStorage.getItem('currentTask')})
-        }, 3000)
     };
 };
 

@@ -1,3 +1,5 @@
+@import '../../constants/constants.sass'
+
 .gists
   .gists-img
     position: absolute
@@ -5,10 +7,14 @@
     right: 30px
     width: 60px
     cursor: pointer
-    filter: grayscale(100%)
-    opacity: .5
     &:hover
       opacity: 1
+  .gists-img__non-aut
+    filter: grayscale(100%)
+    opacity: .5
+  .aut-pulse
+    animation: pulse 1s
+    border-radius: 50%
   .gists-popap
     position: absolute
     top: 90px
@@ -17,9 +23,30 @@
     flex-direction: column
     padding: 20px
     z-index: 1000
+    .login .button-wrap
+      display: flex
+      flex-direction: column
+    .non-login
+      display: flex
+      flex-direction: column
+      .error
+        color: $error
+        font-size: 12px
+        text-align: center
+        margin-top: 15px
     label
-      margin-bottom: 15px
       font-size: 14px
-      span
-        width: 130px
-        display: inline-block
+      input
+        margin-left: 10px
+        font-size: 12px
+        width: 300px
+    h2
+      text-align: center
+    button
+      margin-top: 15px
+
+@keyframes pulse
+  0%
+    box-shadow: 0 0 0 0 #bf4ccc
+  100%
+    box-shadow: 0 0 0 50px rgba(204,169,44,0)
