@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@intereact/ripple": "^1.1.1",
     "electron-is-dev": "^1.0.1",
     "gist-client": "^1.1.0",
     "gists": "^2.0.0",

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Ripples from 'react-ripples'
+import Ripple from '@intereact/ripple';
 
 import './style.sass';
 
@@ -53,13 +53,14 @@ export default class Index extends Component {
                         })}
                     </datalist>
                 </div>
-                <Ripples
-                    style={{borderRadius: 40}}
-                    during="1000"
-                    color="#ffffff40"
-                >
-                    <button className="ordinar" type="submit" variant="outline-primary">Добавить</button>
-                </Ripples>
+                <Ripple>
+                    { (ripples) => (
+                        <button className="ordinar" type="submit" variant="outline-primary" style={{ position: 'relative' }}>
+                            Добавить
+                            { ripples }
+                        </button>
+                    ) }
+                </Ripple>
             </form>
         );
     }

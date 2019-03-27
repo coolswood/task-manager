@@ -24,7 +24,7 @@ export default class AddEvent extends Component {
 
         return (
             <div className={`add-event ${type === 'mistakes' ? 'add-event-mistake' : ''}`}>
-                <h2>{h2}</h2>
+                {h2 && <h2>{h2}</h2>}
                 {type !== 'mistakes' && <InputForm type={type} id={id} />}
 
                 {(!data || data.length === 0) && <div></div>}

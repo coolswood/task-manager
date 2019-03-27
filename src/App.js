@@ -297,7 +297,7 @@ export default class App extends Component {
                                             </TabList>
                                             <TabPanel>
                                                 <AddEvent
-                                                    h2="Чеклист задачи"
+                                                    h2=""
                                                     type="checklist"
                                                     id="localChecklist"
                                                     data={thisTask.checklist}
@@ -305,7 +305,7 @@ export default class App extends Component {
                                             </TabPanel>
                                             <TabPanel>
                                                 <AddEvent
-                                                    h2="Чеклист"
+                                                    h2=""
                                                     type="checklist"
                                                     id="commonChecklist"
                                                     data={thisTask.commonChecklist}

@@ -53,7 +53,7 @@ export default class H1 extends Component {
                 }}>
                 <div className="h1-wrapper">
                     {edit ?
-                        <input ref={this.input} onKeyDown={this.saveVal} defaultValue={thisTask.h1} type="text"/> :
+                        <input onMouseLeave={this.toggleH1} ref={this.input} onKeyDown={this.saveVal} defaultValue={thisTask.h1} type="text"/> :
                         <h1 onMouseOver={this.toggleH1}>{thisTask.h1}</h1>
                     }
                 </div>

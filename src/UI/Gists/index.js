@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 import Gist from 'gist-client';
+import Ripple from '@intereact/ripple'
+import OutsideClickHandler from 'react-outside-click-handler';
 
 import { getAllData, syncData } from '../../api'
 
@@ -22,9 +24,9 @@ export default class GistsComponent extends Component {
         this.logIn(distId)
     }
 
-    toggleShow = () => {
+    toggleShow = (type) => {
         this.setState({
-            show: !this.state.show
+            show: type === 'close' ? false : !this.state.show
         })
     };
 
@@ -113,6 +115,10 @@ export default class GistsComponent extends Component {
         const { show, isLogin, autFailed } = this.state;
 
         return (
+            <OutsideClickHandler
+                onOutsideClick={() => {
+                    this.toggleShow('close')
+                }}>
             <div className="gists">
                 <img onClick={this.toggleShow} className={`gists-img ${isLogin ? 'aut-pulse' : 'gists-img__non-aut'}`} src={require('../../img/github.png')} alt="gists"/>
                 {show && <div className="page gists-popap">
@@ -123,17 +129,39 @@ export default class GistsComponent extends Component {
                             <input placeholder="9ebbdf2b44d57308af81c18ef8f298cbe2c79250" onChange={(e) => this.updateField('id', e)} type="text"/>
                         </label>
                         {autFailed && <div className="error">Неверный токен</div>}
-                        <button onClick={() => this.logIn(this.state.id)} className="ordinar fiolet">Авторизоваться</button>
+                        <Ripple>
+                            { (ripples) => (
+                                <button style={{ position: 'relative' }}>
+                                    { ripples }
+                                    <button onClick={() => this.logIn(this.state.id)} className="ordinar fiolet">Авторизоваться</button>
+                                </button>
+                            ) }
+                        </Ripple>
                     </div>}
                     {isLogin && <div className="login">
                         <h2>Синхронизировано с Gists</h2>
                         <div className="button-wrap">
-                            <button onClick={this.backup} className="ordinar fiolet">backup</button>
-                            <button onClick={this.restore} className="ordinar fiolet">restore</button>
+                            <Ripple>
+                                { (ripples) => (
+                                    <button style={{ position: 'relative' }}>
+                                        { ripples }
+                                        <button onClick={this.backup} className="ordinar fiolet">backup</button>
+                                    </button>
+                                ) }
+                            </Ripple>
+                            <Ripple>
+                                { (ripples) => (
+                                    <button style={{ position: 'relative' }}>
+                                        { ripples }
+                                        <button onClick={this.restore} className="ordinar fiolet">restore</button>
+                                    </button>
+                                ) }
+                            </Ripple>
                         </div>
                     </div>}
                 </div>}
             </div>
+        </OutsideClickHandler>
         )
     }
 }
