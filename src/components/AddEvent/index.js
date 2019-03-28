@@ -30,7 +30,7 @@ export default class AddEvent extends Component {
                 {(!data || data.length === 0) && <div></div>}
 
                 {!!data && type === 'ordinar' &&
-                    <div style={this.state.dataLength > 5 ? {height: 300} : {}} className="list">
+                    <div style={this.state.dataLength > 5 ? {height: 310} : {}} className="list">
                         <CustomScroll>
                             {data.map((item, i) => {
                                 return <ListItem
@@ -47,7 +47,7 @@ export default class AddEvent extends Component {
                 }
 
                 {!!data && type !== 'ordinar' &&
-                    <div style={this.state.dataLength > 5 ? {height: 300} : {}} className="list">
+                    <div style={this.state.dataLength > 5 ? {height: 310} : {}} className="list">
                         <CustomScroll>
                             {Object.keys(data).map((item, i) => {
                                 return <ListItem
@@ -57,7 +57,6 @@ export default class AddEvent extends Component {
                                     key={i}
                                     id={id}
                                     i={i + 1}
-                                    isLast={Object.keys(data).length - 1 === i}
                                 />
                             })}
                         </CustomScroll>

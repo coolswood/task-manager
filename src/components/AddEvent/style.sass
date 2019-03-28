@@ -36,10 +36,13 @@
       color: $check
 
   .checkbox__checked
-    order: 1000 !important
+    animation: checked 1.2s
+    color: $gray
+    order: 1000
     .scroller-text
-      color: $gray
       text-decoration: line-through
+  .checkbox__nocheck
+    animation: non-checked 1s
 
   .list-item__checklist
     display: flex
@@ -49,7 +52,7 @@
     border-bottom: 1px solid #e0e0e0
 
     .scroller-wrap
-      margin-left: 40px
+      margin: 0 40px
 
     .check-sign
       font-size: 0
@@ -96,3 +99,31 @@
 .add-event-mistake
   padding-bottom: 10px
   padding-top: 25px
+
+@keyframes checked
+  0%
+    opacity: 1
+    order: 0
+  25%
+    opacity: 0
+    order: 0
+  50%
+    opacity: 0
+    order: 1000
+  100%
+    opacity: 1
+    order: 1000
+
+@keyframes non-checked
+  0%
+    opacity: 1
+    order: 1000
+  25%
+    opacity: 0
+    order: 1000
+  50%
+    opacity: 0
+    order: 0
+  100%
+    opacity: 1
+    order: 0
