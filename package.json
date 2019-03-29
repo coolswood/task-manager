@@ -42,10 +42,10 @@
     "wait-on": "^3.2.0"
   },
   "main": "public/electron.js",
-  "productName": "Задачник",
   "target": "NSIS",
   "build": {
     "appId": "com.ip.app",
+    "productName": "Задачник",
     "win": {
       "target": [
         "portable"
