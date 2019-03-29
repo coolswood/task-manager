@@ -71,7 +71,7 @@
         <entry file="file://$PROJECT_DIR$/src/components/AddEvent/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1333">
-              <caret line="50" column="38" lean-forward="true" selection-start-line="50" selection-start-column="38" selection-end-line="50" selection-end-column="38" />
+              <caret line="50" column="38" selection-start-line="50" selection-start-column="38" selection-end-line="50" selection-end-column="38" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -94,8 +94,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="47" column="30" selection-start-line="47" selection-start-column="30" selection-end-line="47" selection-end-column="30" />
+            <state relative-caret-position="236">
+              <caret line="57" column="17" lean-forward="true" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -435,7 +435,7 @@
       <workItem from="1553715602216" duration="226000" />
       <workItem from="1553804110825" duration="3306000" />
       <workItem from="1553807538631" duration="1342000" />
-      <workItem from="1553832777416" duration="2142000" />
+      <workItem from="1553832777416" duration="2311000" />
     </task>
     <task id="LOCAL-00001" summary="Добавлена базовая структура">
       <created>1550855126027</created>
@@ -640,11 +640,25 @@
       <option name="project" value="LOCAL" />
       <updated>1553833246120</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="mac">
+      <created>1553835061173</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1553835061173</updated>
+    </task>
+    <task id="LOCAL-00031" summary="mac">
+      <created>1553835146397</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1553835146397</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="246331000" />
+    <option name="totallyTimeSpent" value="246500000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -657,8 +671,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17650159" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17650159" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -670,7 +685,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32998884" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="8" visible="true" weight="0.53065777" />
+      <window_info anchor="bottom" id="Version Control" order="8" visible="true" weight="0.53065777" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50052685" side_tool="true" weight="0.29208472" />
       <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49947312" weight="0.29591838" />
       <window_info anchor="bottom" id="Messages" order="11" />
@@ -993,7 +1008,7 @@
     <entry file="file://$PROJECT_DIR$/src/components/AddEvent/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1333">
-          <caret line="50" column="38" lean-forward="true" selection-start-line="50" selection-start-column="38" selection-end-line="50" selection-end-column="38" />
+          <caret line="50" column="38" selection-start-line="50" selection-start-column="38" selection-end-line="50" selection-end-column="38" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
@@ -1036,8 +1051,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="47" column="30" selection-start-line="47" selection-start-column="30" selection-end-line="47" selection-end-column="30" />
+        <state relative-caret-position="236">
+          <caret line="57" column="17" lean-forward="true" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
         </state>
       </provider>
     </entry>
