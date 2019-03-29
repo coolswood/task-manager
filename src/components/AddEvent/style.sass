@@ -36,13 +36,14 @@
       color: $check
 
   .checkbox__checked
-    animation: checked 1.2s
     color: $gray
     order: 1000
     .scroller-text
       text-decoration: line-through
-  .checkbox__nocheck
-    animation: non-checked 1s
+  .checkbox__checked--animate
+    animation: checked 1.2s
+  .checkbox__nocheck--animate
+    animation: non-checked 1.2s
 
   .list-item__checklist
     display: flex
