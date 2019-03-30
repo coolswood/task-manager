@@ -37,13 +37,13 @@
 
   .checkbox__checked
     color: $gray
-    order: 1000
+    order: 1
     .scroller-text
       text-decoration: line-through
   .checkbox__checked--animate
-    animation: checked 1.2s
+    animation: checked 1s ease-in-out
   .checkbox__nocheck--animate
-    animation: non-checked 1.2s
+    animation: non-checked 1s ease-in-out
 
   .list-item__checklist
     display: flex
@@ -103,28 +103,28 @@
 
 @keyframes checked
   0%
-    opacity: 1
-    order: 0
+    opacity: 0
   25%
     opacity: 0
-    order: 0
   50%
     opacity: 0
-    order: 1000
+    height: 0
+  75%
+    opacity: 0
   100%
     opacity: 1
-    order: 1000
 
 @keyframes non-checked
   0%
-    opacity: 1
-    order: 1000
+    opacity: 0
   25%
     opacity: 0
-    order: 1000
   50%
     opacity: 0
-    order: 0
+    height: 0
+  75%
+    opacity: 0
+    height: 0
   100%
     opacity: 1
-    order: 0
+    height: 50px

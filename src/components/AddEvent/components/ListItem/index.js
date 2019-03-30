@@ -20,14 +20,20 @@ export default class ListItem extends Component {
         toggleChecklist(text, id);
 
         let currentCheckbox = this.checkbox.current;
+
         setTimeout(() => {
-            if(currentCheckbox.classList.contains('checkbox__checked--animate')) {
+            if(currentCheckbox.classList.contains('checkbox__checked')) {
                 currentCheckbox.classList.remove('checkbox__checked--animate');
                 currentCheckbox.classList.add('checkbox__nocheck--animate');
+                setTimeout(() => {
+                    currentCheckbox.style.order = 1000
+                }, 700)
             } else {
-                console.log('sss')
                 currentCheckbox.classList.add('checkbox__checked--animate');
                 currentCheckbox.classList.remove('checkbox__nocheck--animate');
+                setTimeout(() => {
+                    currentCheckbox.style.order = 0
+                }, 700)
             }
         }, 0)
     };
