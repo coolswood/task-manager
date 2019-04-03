@@ -13,8 +13,9 @@
     "react-dom": "^16.8.3",
     "react-outside-click-handler": "^1.2.2",
     "react-ripples": "^1.1.2",
-    "react-scripts": "2.1.5",
+    "react-scripts": "2.1.8",
     "react-tabs": "^3.0.0",
+    "react-timer-simple": "^1.0.0",
     "react-transition-group": "^2.7.0"
   },
   "scripts": {
@@ -41,18 +42,15 @@
     "wait-on": "^3.2.0"
   },
   "main": "public/electron.js",
-  "target": "NSIS",
   "build": {
     "appId": "com.ip.app",
     "productName": "Задачник",
+    "target": "NSIS",
     "win": {
       "target": [
         "portable"
       ],
-      "icon": "public/favicon.ico"
-    },
-    "mac": {
-      "icon": "public/favicon.ico"
+      "icon": "public/ico.ico"
     },
     "portable": {
       "artifactName": "task-manager.exe"

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Timer from './Timer'
+import Timer from 'react-timer-simple'
 
 import {Context} from "../../context";
 
@@ -57,9 +57,7 @@ export default class TimerComponent extends Component {
             startTime: thisTask.timer || 0,
             play: 'Старт',
             pause: 'Пауза',
-            reset: 'Очистить',
-            rippleColor: "#ffffff40",
-            rippleDuring: 1000
+            reset: 'Очистить'
         };
 
         return (
