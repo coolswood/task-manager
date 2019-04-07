@@ -308,7 +308,7 @@ export default class App extends Component {
                         <div className="wrapper">
                             <Nav headers={commonData.allHeaders} />
                             <Header />
-                            <section>
+                            <section className="main-wrapper">
                                 <main>
                                     <Page className="timer-wrap">
                                         <div className="timer">

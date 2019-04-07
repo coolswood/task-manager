@@ -124,3 +124,29 @@ input
     background: rgba(174, 174, 174, 0.41) !important
     &:hover
       background: rgba(174, 174, 174, 0.81) !important
+
+@media only screen and (max-width: 1250px)
+  .main-wrapper
+    flex-direction: column
+  .main-nav
+    width: 100% !important
+  main
+    width: 100% !important
+  .h1-page
+    padding-top: 120px !important
+  .timer-wrap
+    padding: 0 !important
+  .seconds
+    font-size: 44px !important
+  .react-timer__buttons
+    flex-wrap: wrap !important
+  .react-timer__button
+    margin-bottom: 10px !important
+  .form
+    flex-direction: column
+    input, .data-list-wrapper
+      width: calc(100% - 15px) !important
+      max-width: 100% !important
+    button
+      margin-top: 10px
+      width: 100%
