@@ -193,10 +193,12 @@ export const deleteItemTask = (text, type, thisTask, callback) => {
 
             common.openCursor().onsuccess = (event) => {
                 let cursor = event.target.result.value;
-                if(cursor.errors[text] === 1) {
-                    delete cursor.errors[text]
-                } else {
-                    cursor.errors[text] = cursor.errors[text] - 1
+                if(cursor.errors[text]) {
+                    if(cursor.errors[text] === 1) {
+                        delete cursor.errors[text]
+                    } else {
+                        cursor.errors[text] = cursor.errors[text] - 1
+                    }
                 }
 
                 common.put(cursor);
