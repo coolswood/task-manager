@@ -76,10 +76,12 @@ export default class App extends Component {
         });
     };
 
-    saveTimer = (time) => {
+    updateTimer = (time) => {
         this.setState({
             thisTask: {...this.state.thisTask, timer: time}
-        })
+        });
+
+        updateThisData(this.state.thisTask);
     };
 
     deleteTask = (text) => {
@@ -259,7 +261,7 @@ export default class App extends Component {
                 changeTask: this.changeTask,
                 deleteTask: this.deleteTask,
                 deleteItemTask: this.deleteItemTask,
-                saveTimer: this.saveTimer
+                updateTimer: this.updateTimer
             }}>
                 <div className="background" />
                 <div className="app">

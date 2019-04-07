@@ -9,9 +9,9 @@ export default class TimerComponent extends Component {
     static contextType = Context;
 
     updateTimer = (time) => {
-        const { saveTimer } = this.context;
+        const { updateTimer } = this.context;
 
-        saveTimer(time)
+        updateTimer(time)
     };
 
     render() {

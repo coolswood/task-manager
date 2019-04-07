@@ -7,10 +7,13 @@ import OutsideClickHandler from 'react-outside-click-handler';
 import { getAllData, syncData } from '../../api'
 
 import './style.sass';
+import {Context} from "../../context";
 
 const gistClient = new Gist();
 
 export default class GistsComponent extends Component {
+    static contextType = Context;
+
     state = {
         id: null,
         show: false,
@@ -48,6 +51,9 @@ export default class GistsComponent extends Component {
     };
 
     backup = () => {
+        const { updateTimer } = this.context;
+
+        // updateTimer();
         getAllData(data => {
             this.updateGist(data)
         });
