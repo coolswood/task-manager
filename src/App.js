@@ -222,7 +222,13 @@ export default class App extends Component {
 
         toggled[text] = !toggled[text];
 
-        let data = {...thisTask, toggled};
+        let data;
+
+        if(id === 'localChecklist') {
+            data = {...thisTask, checklist: toggled};
+        } else {
+            data = {...thisTask, commonChecklist: toggled};
+        }
 
         updateThisData(data);
 
@@ -241,7 +247,7 @@ export default class App extends Component {
 
         this.setState({
             commonData: data,
-            thisTask: {...thisTask, commonChecklist: newChecklist}
+            thisTask: {...thisTask, commonChecklist: {...thisTask.commonChecklist, [text]: false}}
         })
     };
 
