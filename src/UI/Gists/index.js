@@ -7,12 +7,10 @@ import OutsideClickHandler from 'react-outside-click-handler';
 import { getAllData, syncData } from '../../api'
 
 import './style.sass';
-import {Context} from "../../context";
 
 const gistClient = new Gist();
 
 export default class GistsComponent extends Component {
-    static contextType = Context;
 
     state = {
         id: null,
@@ -23,6 +21,8 @@ export default class GistsComponent extends Component {
 
     componentDidMount() {
         let distId = localStorage.getItem('gistId');
+
+        if(distId === null) return;
 
         this.logIn(distId)
     }
@@ -39,23 +39,31 @@ export default class GistsComponent extends Component {
         })
     };
 
-    restore = () => {
+    restore = (e) => {
+        let button = e.target.style;
         gistClient.getOneById(localStorage.getItem('gistCurrent'))
             .then(response => {
                 syncData(JSON.parse(response.files.ErrorList.content), (data) => {
-                    this.props.syncData(data)
+                    this.props.syncData(data);
+                    button.background = '#049823';
+                    setTimeout(() => {
+                        button.background = '';
+                    }, 500)
                 })
             }).catch(err => {
             console.log(err)
         })
     };
 
-    backup = () => {
-        const { updateTimer } = this.context;
+    backup = (e) => {
+        let button = e.target.style;
 
-        // updateTimer();
         getAllData(data => {
             this.updateGist(data)
+            button.background = '#049823';
+            setTimeout(() => {
+                button.background = '';
+            }, 500)
         });
     };
 
@@ -149,17 +157,17 @@ export default class GistsComponent extends Component {
                         <div className="button-wrap">
                             <Ripple>
                                 { (ripples) => (
-                                    <button style={{ position: 'relative' }}>
+                                    <button onClick={this.backup} className="ordinar fiolet" style={{ position: 'relative' }}>
                                         { ripples }
-                                        <button onClick={this.backup} className="ordinar fiolet">backup</button>
+                                        backup
                                     </button>
                                 ) }
                             </Ripple>
                             <Ripple>
                                 { (ripples) => (
-                                    <button style={{ position: 'relative' }}>
+                                    <button onClick={this.restore} className="ordinar fiolet" style={{ position: 'relative' }}>
                                         { ripples }
-                                        <button onClick={this.restore} className="ordinar fiolet">restore</button>
+                                        restore
                                     </button>
                                 ) }
                             </Ripple>

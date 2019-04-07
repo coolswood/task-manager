@@ -186,9 +186,36 @@ export default class App extends Component {
     };
 
     addNewFind = (text) => {
-        const { thisTask } = this.state;
+        const { thisTask, commonData } = this.state;
 
         let data = {...thisTask, thisFindList: [...thisTask.thisFindList, text]};
+
+        let newDate;
+
+        if(commonData.errors[text]) {
+            if(commonData.errors[text] === 1) {
+                delete commonData.errors[text]
+                newDate = commonData;
+            } else {
+                let errors = {...commonData.errors, [text]: commonData.errors[text] - 1};
+                let sorted = Object.keys(errors).sort(function (a, b) {
+                    return errors[b] - errors[a]
+                });
+
+                let mewObj = {};
+                sorted.map((item) => {
+                    mewObj[item] = errors[item]
+                });
+
+                newDate = {...commonData, errors: mewObj}
+            }
+
+            updateCommonData(newDate);
+
+            this.setState({
+                commonData: newDate
+            })
+        }
 
         updateThisData(data);
 

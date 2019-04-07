@@ -46,7 +46,7 @@ export default class Index extends Component {
         return (
             <form className="form" onSubmit={this.submit}>
                 <div className="data-list-wrapper">
-                    <input list={id === 'addMistake' ? 'list' : ''} ref={this.input} />
+                    <input list={(id === 'addMistake' || id === 'findMistake') ? 'list' : ''} ref={this.input} />
                     <datalist id="list">
                         {Object.keys(commonData.errors).map((item) => {
                             return <option value={item} key={item} />
