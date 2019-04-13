@@ -16,7 +16,8 @@
     "react-scripts": "2.1.8",
     "react-tabs": "^3.0.0",
     "react-timer-simple": "^2.0.0",
-    "react-transition-group": "^2.7.0"
+    "react-transition-group": "^2.7.0",
+    "typescript": "^3.4.3"
   },
   "scripts": {
     "start": "react-scripts start",
