@@ -22,10 +22,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
     "eject": "react-scripts eject",
     "electron-dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
-    "dist": "electron-builder"
+    "win": "electron-builder",
+    "mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=publick/ico.icns --prune=true"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -40,6 +40,7 @@
     "concurrently": "^4.1.0",
     "electron": "^4.0.5",
     "electron-builder": "^20.38.5",
+    "electron-packager": "^13.1.1",
     "wait-on": "^3.2.0"
   },
   "main": "public/electron.js",
@@ -50,19 +51,6 @@
     "win": {
       "target": [
         "portable"
-      ],
-      "icon": "public/ico.ico"
-    },
-    "mac": {
-      "category": "public.app-category.developer-tools",
-      "target": [
-        {
-          "target": "nsis",
-          "arch": [
-            "x64",
-            "ia32"
-          ]
-        }
       ],
       "icon": "public/ico.ico"
     },
