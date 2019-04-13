@@ -12,7 +12,7 @@ let newThisItem = {
 let DBOpenRequest = window.indexedDB.open("taskList", 1);
 
 DBOpenRequest.onupgradeneeded = function(event) {
-    let db = event.target.result;
+    db = event.target.result;
 
     let thisTask = db.createObjectStore("thisTask", { keyPath: "h1", autoIncrement: true });
 
@@ -72,8 +72,6 @@ export const syncData = (data, callback) => {
     })[0];
 
     callback({commonData: data.commonData, thisTask: thisTask})
-
-    // objectStore.clear()
 };
 
 export const getData = (taskName, callback) => {
@@ -112,6 +110,7 @@ export const updateThisData = (data) => {
 };
 
 export const updateH1 = (data, oldText, callback) => {
+    console.log(db)
     let objectStore = db.transaction(["commonData"], "readwrite").objectStore('commonData');
 
     objectStore.openCursor().onsuccess = (e) => {

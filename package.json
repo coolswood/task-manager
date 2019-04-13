@@ -23,9 +23,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "electron-dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "electron-dev": "concurrently \"yarn start\" \"wait-on http://localhost:3000 && electron .\"",
     "win": "electron-builder",
-    "mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=publick/ico.icns --prune=true"
+    "mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=public/ico.icns --prune=true"
   },
   "eslintConfig": {
     "extends": "react-app"
