@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8ff0eb63-537f-4ab1-81c0-9629e3a2627f" name="Default Changelist" comment="mac">
-      <change afterPath="$PROJECT_DIR$/public/ico.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="8ff0eb63-537f-4ab1-81c0-9629e3a2627f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/dist/" />
@@ -55,8 +53,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="40" column="35" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
+            <state relative-caret-position="278">
+              <caret line="43" column="31" lean-forward="true" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -369,7 +367,7 @@
       <workItem from="1554955548255" duration="2966000" />
       <workItem from="1555133451065" duration="8319000" />
       <workItem from="1555157635521" duration="837000" />
-      <workItem from="1555223091109" duration="2414000" />
+      <workItem from="1555223091109" duration="2484000" />
     </task>
     <task id="LOCAL-00001" summary="bug fix">
       <created>1554957016610</created>
@@ -399,12 +397,12 @@
       <option name="project" value="LOCAL" />
       <updated>1555151795618</updated>
     </task>
-    <task id="LOCAL-00005" summary="bux fix">
-      <created>1554657515936</created>
+    <task id="LOCAL-00005" summary="mac">
+      <created>1555227529575</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1554657515936</updated>
+      <updated>1555227529575</updated>
     </task>
     <task id="LOCAL-00006" summary="mobile size">
       <created>1554660237124</created>
@@ -588,14 +586,15 @@
       <option name="project" value="LOCAL" />
       <updated>1553835146397</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13069000" />
+    <option name="totallyTimeSpent" value="13139000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="222" y="227" width="1791" height="990" extended-state="0" />
+    <frame x="140" y="58" width="1791" height="1016" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16257843" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -609,7 +608,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32998884" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="8" visible="true" weight="0.52948254" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="8" visible="true" weight="0.5134189" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50052685" side_tool="true" weight="0.29208472" />
       <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49947312" weight="0.29362214" />
       <window_info anchor="bottom" id="Messages" order="11" />
@@ -762,8 +761,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="40" column="35" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
+        <state relative-caret-position="278">
+          <caret line="43" column="31" lean-forward="true" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
         </state>
       </provider>
     </entry>
