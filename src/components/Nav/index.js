@@ -16,11 +16,9 @@ export default class Nav extends Component {
     };
 
     componentWillReceiveProps(nextProps, nextContext) {
-        if(nextProps.headers.length !== this.state.headers.length) {
-            this.setState({
-                headers: nextProps.headers
-            })
-        }
+        this.setState({
+            headers: nextProps.headers
+        })
     }
 
     toggleMenu = () => {

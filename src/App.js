@@ -5,6 +5,7 @@ import { getData, updateCommonData, updateThisData, updateH1, changeTask, delete
 import Page from './UI/Page'
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import Ripple from '@intereact/ripple';
 import Gists from './UI/Gists';
 import TimerComponent from './UI/Timer';
 import "react-tabs/style/react-tabs.css";
@@ -17,6 +18,12 @@ import Nav from './components/Nav'
 import {Context} from './context';
 
 export default class App extends Component {
+
+    constructor(props) {
+        super(props);
+        this.inputName = React.createRef();
+    }
+
     state = {
         thisTask: {
             h1: "Напишите название",
@@ -31,7 +38,8 @@ export default class App extends Component {
             checklist: {},
             errors: {}
         },
-        load: false
+        load: false,
+        popap: false
     };
 
     componentDidMount() {
@@ -130,16 +138,31 @@ export default class App extends Component {
         });
     };
 
-    createNewTask = () => {
+    openPopap = () => {
+        this.setState({
+            popap: !this.state.popap
+        })
+    };
+
+    createNewTask = (e) => {
+        e.preventDefault();
+        let value = this.inputName.current.value === '' ? 'Напишите название' : this.inputName.current.value;
+
         this.setState({
             thisTask: {
-                h1: "Напишите название",
+                h1: value,
                 thisErrorList: [],
                 thisFindList: [],
                 commonChecklist: this.state.commonData.checklist,
                 checklist: {}
-            }
+            },
+            popap: false
         })
+
+        setTimeout(() => {
+            this.changeH1(value);
+        }, 0)
+
     };
 
     syncData = (data) => {
@@ -279,7 +302,7 @@ export default class App extends Component {
     };
 
     render() {
-        const { thisTask, commonData } = this.state;
+        const { thisTask, commonData, popap } = this.state;
 
         return (
             <Context.Provider value = {{
@@ -290,7 +313,7 @@ export default class App extends Component {
                 addCommonChecklist: this.addCommonChecklist,
                 toggleChecklist: this.toggleChecklist,
                 changeH1: this.changeH1,
-                createNewTask: this.createNewTask,
+                openPopap: this.openPopap,
                 changeTask: this.changeTask,
                 deleteTask: this.deleteTask,
                 deleteItemTask: this.deleteItemTask,
@@ -370,6 +393,27 @@ export default class App extends Component {
                             </section>
                         </div>
                     </CSSTransition>
+
+                    {popap && <div className="popap-task__closer" onClick={this.openPopap}></div>}
+                    <Page className={`popap-task ${popap ? 'popap-task__opened' : ''}`}>
+                        <h2>Создать задачу</h2>
+                        <form className="form popap-task__form" onSubmit={this.createNewTask}>
+                            <div className="popap-task__wrap">
+                                <input ref={this.inputName} type="text" placeholder="Введите название" />
+                                {/*<input ref={this.input} type="number" placeholder="Предположительное время на задачу в часах" />*/}
+                            </div>
+
+                            <Ripple>
+                                { (ripples) => (
+                                    <button className="ordinar" type="submit" variant="outline-primary" style={{ position: 'relative' }}>
+                                        Создать
+                                        { ripples }
+                                    </button>
+                                ) }
+                            </Ripple>
+                        </form>
+                    </Page>
+
                 </div>
             </Context.Provider>
         );

@@ -121,6 +121,37 @@ input
         padding: 20px
         border: none
 
+.popap-task
+  max-width: 500px
+  min-height: 130px
+  padding: 20px
+  position: fixed
+  top: -50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  z-index: 100000
+  text-align: center
+  transition: .5s
+  &__form
+    display: block !important
+  &__wrap
+    display: flex
+    flex-direction: column
+    align-items: center
+    input
+      margin-bottom: 10px
+  &__opened
+    top: 50%
+  &__closer
+    width: 100vw
+    height: 100vh
+    position: fixed
+    top: 0
+    left: 0
+    background: #312f2f5e
+    transition: .7s
+    cursor: pointer
+
 .react-customscroll-scrollbar-area
   background: none !important
   .react-customscroll-scrollbar
