@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 
 import Scroller from '../../UI/Scroller';
@@ -16,9 +16,11 @@ export default class Nav extends Component {
     };
 
     componentWillReceiveProps(nextProps, nextContext) {
-        this.setState({
-            headers: nextProps.headers
-        })
+        if(JSON.stringify(nextProps) !== JSON.stringify(this.props)) {
+            this.setState({
+                headers: nextProps.headers
+            })
+        }
     }
 
     toggleMenu = () => {
