@@ -16,6 +16,7 @@ export default class TimerComponent extends Component {
 
     render() {
         const { thisTask } = this.context;
+        const { limit } = this.props;
 
         const timerStyle = {
             margin: "0px",
@@ -51,9 +52,27 @@ export default class TimerComponent extends Component {
             textAlign: 'center'
         };
 
+        const limitStyle = {
+            position: 'absolute',
+            top: 20,
+            right: 20,
+            color: "#312f2f",
+            fontWeight: "400",
+            fontSize: "20px"
+        };
+
+        const overTime = {
+            fontSize: "64px",
+            fontWeight: "400",
+            lineHeight: "75px",
+            margin: "0",
+            color: "rgb(232, 79, 100)",
+            textAlign: 'center'
+        };
+
         const OPTIONS = {
-            delay: 1000,
             autoplay: false,
+            limit: limit,
             startTime: thisTask.timer || 0,
             play: 'Старт',
             pause: 'Пауза',
@@ -68,6 +87,8 @@ export default class TimerComponent extends Component {
                 buttonsStyle={buttonsStyle}
                 buttonStyle={buttonStyle}
                 secondsStyles={secondsStyles}
+                overTime={overTime}
+                limitStyle={limitStyle}
             />
         );
     }

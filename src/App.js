@@ -22,6 +22,7 @@ export default class App extends Component {
     constructor(props) {
         super(props);
         this.inputName = React.createRef();
+        this.inputLimit = React.createRef();
     }
 
     state = {
@@ -31,7 +32,8 @@ export default class App extends Component {
             thisFindList: [],
             checklist: {},
             commonChecklist: {},
-            timer: 0
+            timer: 0,
+            limit: 0
         },
         commonData: {
             allHeaders: [],
@@ -147,6 +149,7 @@ export default class App extends Component {
     createNewTask = (e) => {
         e.preventDefault();
         let value = this.inputName.current.value === '' ? 'Напишите название' : this.inputName.current.value;
+        let valueLimit = this.inputLimit.current.value === '' ? 0 : this.inputLimit.current.value * 60 * 60 * 1000;
 
         this.setState({
             thisTask: {
@@ -154,14 +157,18 @@ export default class App extends Component {
                 thisErrorList: [],
                 thisFindList: [],
                 commonChecklist: this.state.commonData.checklist,
-                checklist: {}
+                checklist: {},
+                limit: valueLimit
             },
             popap: false
         })
 
         setTimeout(() => {
             this.changeH1(value);
-        }, 0)
+        }, 0);
+
+        this.inputName.current.value = '';
+        this.inputLimit.current.value = '';
 
     };
 
@@ -333,9 +340,9 @@ export default class App extends Component {
                             <Header />
                             <section className="main-wrapper">
                                 <main>
-                                    <Page className="timer-wrap">
+                                    <Page style={{position: 'relative'}} className="timer-wrap">
                                         <div className="timer">
-                                            <TimerComponent />
+                                            <TimerComponent limit={thisTask.limit} />
                                         </div>
                                     </Page>
                                     <Page>
@@ -400,7 +407,7 @@ export default class App extends Component {
                         <form className="form popap-task__form" onSubmit={this.createNewTask}>
                             <div className="popap-task__wrap">
                                 <input ref={this.inputName} type="text" placeholder="Введите название" />
-                                {/*<input ref={this.input} type="number" placeholder="Предположительное время на задачу в часах" />*/}
+                                <input ref={this.inputLimit} type="text" placeholder="Предположительное время на задачу в часах" />
                             </div>
 
                             <Ripple>

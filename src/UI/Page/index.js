@@ -4,7 +4,7 @@ import './style.sass';
 
 export default (props) => {
     return (
-        <div className={`page ${props.className ? props.className : ''}`}>
+        <div style={props.style} className={`page ${props.className ? props.className : ''}`}>
             {props.children}
         </div>
     )

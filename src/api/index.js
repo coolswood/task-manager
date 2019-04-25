@@ -6,7 +6,8 @@ let newThisItem = {
     thisFindList: [],
     checklist: {},
     commonChecklist: {},
-    timer: 0
+    timer: 0,
+    limit: 0
 };
 
 let DBOpenRequest = window.indexedDB.open("taskList", 1);
