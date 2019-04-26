@@ -1,14 +1,8 @@
+import {NEW_COMMON_ITEM, THIS_TASK} from "../constants/AppConstants";
+
 let db;
 
-let newThisItem = {
-    h1: "Напишите название",
-    thisErrorList: [],
-    thisFindList: [],
-    checklist: {},
-    commonChecklist: {},
-    timer: 0,
-    limit: 0
-};
+let newThisItem = THIS_TASK;
 
 let DBOpenRequest = window.indexedDB.open("taskList", 1);
 
@@ -21,11 +15,7 @@ DBOpenRequest.onupgradeneeded = function(event) {
 
     let commonData = db.createObjectStore("commonData", { keyPath: "commonData", autoIncrement: true });
 
-    let newCommonItem = {
-        allHeaders: ["Напишите название"],
-        checklist: {},
-        errors: {}
-    };
+    let newCommonItem = NEW_COMMON_ITEM;
 
     commonData.put(newCommonItem)
 };

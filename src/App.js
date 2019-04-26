@@ -16,6 +16,9 @@ import Header from './components/Header'
 import Nav from './components/Nav'
 
 import {Context} from './context';
+import {COMMON_DATA, THIS_TASK} from "./constants/AppConstants";
+import AddCommonChecklist from "./actions/AddCommonChecklist";
+import ToggleChecklist from "./actions/ToggleChecklist";
 
 export default class App extends Component {
 
@@ -26,20 +29,8 @@ export default class App extends Component {
     }
 
     state = {
-        thisTask: {
-            h1: "Напишите название",
-            thisErrorList: [],
-            thisFindList: [],
-            checklist: {},
-            commonChecklist: {},
-            timer: 0,
-            limit: 0
-        },
-        commonData: {
-            allHeaders: [],
-            checklist: {},
-            errors: {}
-        },
+        thisTask: THIS_TASK,
+        commonData: COMMON_DATA,
         load: false,
         popap: false
     };
@@ -224,7 +215,7 @@ export default class App extends Component {
 
         if(commonData.errors[text]) {
             if(commonData.errors[text] === 1) {
-                delete commonData.errors[text]
+                delete commonData.errors[text];
                 newDate = commonData;
             } else {
                 let errors = {...commonData.errors, [text]: commonData.errors[text] - 1};
@@ -266,46 +257,8 @@ export default class App extends Component {
         })
     };
 
-    toggleChecklist = (text, id) => {
-        const { thisTask } = this.state;
-
-        let toggled;
-
-        if(id === 'localChecklist') {
-            toggled = thisTask.checklist;
-        } else {
-            toggled = thisTask.commonChecklist;
-        }
-
-        toggled[text] = !toggled[text];
-
-        let data;
-
-        if(id === 'localChecklist') {
-            data = {...thisTask, checklist: toggled};
-        } else {
-            data = {...thisTask, commonChecklist: toggled};
-        }
-
-        updateThisData(data);
-
-        this.setState({
-            thisTask: data
-        })
-    };
-
-    addCommonChecklist = (text) => {
-        const { thisTask, commonData } = this.state;
-        let newChecklist = {...commonData.checklist, [text]: false};
-
-        let data = {...commonData, checklist: newChecklist};
-
-        updateCommonData(data);
-
-        this.setState({
-            commonData: data,
-            thisTask: {...thisTask, commonChecklist: {...thisTask.commonChecklist, [text]: false}}
-        })
+    updateState = (data) => {
+      this.setState(data)
     };
 
     render() {
@@ -317,8 +270,8 @@ export default class App extends Component {
                 addNewMistake: this.addNewMistake,
                 addNewFind: this.addNewFind,
                 addLocalChecklist: this.addLocalChecklist,
-                addCommonChecklist: this.addCommonChecklist,
-                toggleChecklist: this.toggleChecklist,
+                addCommonChecklist: (text) => AddCommonChecklist(text, thisTask, commonData, this.updateState),
+                toggleChecklist: (text, id) => ToggleChecklist(text, id, thisTask, this.updateState),
                 changeH1: this.changeH1,
                 openPopap: this.openPopap,
                 changeTask: this.changeTask,
