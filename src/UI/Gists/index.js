@@ -134,7 +134,7 @@ export default class GistsComponent extends Component {
                 }}>
             <div className="gists">
                 <img onClick={this.toggleShow} className={`gists-img ${isLogin ? 'aut-pulse' : 'gists-img__non-aut'}`} src={require('../../img/github.png')} alt="gists"/>
-                {show && <div className="page gists-popap">
+                {show && <div className="page gists-popup">
                     {!isLogin && <div className="non-login">
                         <h2>Синхронизация с Gists</h2>
                         <label>

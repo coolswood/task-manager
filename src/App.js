@@ -40,7 +40,7 @@ export default class App extends Component {
         thisTask: THIS_TASK,
         commonData: COMMON_DATA,
         load: false,
-        popap: false
+        popup: false
     };
 
     componentDidMount() {
@@ -56,9 +56,9 @@ export default class App extends Component {
         updateThisData(this.state.thisTask);
     };
 
-    openPopap = () => {
+    openPopup = () => {
         this.setState({
-            popap: !this.state.popap
+            popup: !this.state.popup
         })
     };
 
@@ -76,7 +76,7 @@ export default class App extends Component {
                 checklist: {},
                 limit: valueLimit
             },
-            popap: false
+            popup: false
         });
 
         setTimeout(() => {
@@ -93,7 +93,7 @@ export default class App extends Component {
     };
 
     render() {
-        const { thisTask, commonData, popap } = this.state;
+        const { thisTask, commonData, popup } = this.state;
 
         return (
             <Context.Provider value = {{
@@ -104,7 +104,7 @@ export default class App extends Component {
                 addCommonChecklist: (text) => AddCommonChecklist(text, thisTask, commonData, this.updateState),
                 toggleChecklist: (text, id) => ToggleChecklist(text, id, thisTask, this.updateState),
                 changeH1: (text) => ChangeH1(text, thisTask, this.updateState),
-                openPopap: this.openPopap,
+                openPopup: this.openPopup,
                 changeTask: (text) => ChangeTask(text, thisTask, this.updateState),
                 deleteTask: (text) => DeleteTask(text, this.updateState),
                 deleteItemTask: (text, type) => DeleteItemTask(text, type, thisTask, this.updateState),
@@ -185,11 +185,11 @@ export default class App extends Component {
                         </div>
                     </CSSTransition>
 
-                    {popap && <div className="popap-task__closer" onClick={this.openPopap} />}
-                    <Page className={`popap-task ${popap ? 'popap-task__opened' : ''}`}>
+                    {popup && <div className="popup-task__closer" onClick={this.openPopup} />}
+                    <Page className={`popup-task ${popup ? 'popup-task__opened' : ''}`}>
                         <h2>Создать задачу</h2>
-                        <form className="form popap-task__form" onSubmit={this.createNewTask}>
-                            <div className="popap-task__wrap">
+                        <form className="form popup-task__form" onSubmit={this.createNewTask}>
+                            <div className="popup-task__wrap">
                                 <input ref={this.inputName} type="text" placeholder="Введите название" />
                                 <input ref={this.inputLimit} type="text" placeholder="Предположительное время на задачу в часах" />
                             </div>
