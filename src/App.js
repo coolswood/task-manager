@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { getData, updateCommonData, updateThisData, updateH1, changeTask, deleteTask, deleteItemTask } from './api'
+import { updateThisData } from './api'
 
 import Page from './UI/Page'
 
@@ -19,6 +19,14 @@ import {Context} from './context';
 import {COMMON_DATA, THIS_TASK} from "./constants/AppConstants";
 import AddCommonChecklist from "./actions/AddCommonChecklist";
 import ToggleChecklist from "./actions/ToggleChecklist";
+import AddLocalChecklist from "./actions/AddLocalChecklist";
+import AddNewFind from "./actions/AddNewFind";
+import AddNewMistake from "./actions/AddNewMistake";
+import ChangeH1 from "./actions/ChangeH1";
+import DeleteItemTask from "./actions/DeleteItemTask";
+import DeleteTask from "./actions/DeleteTask";
+import ChangeTask from "./actions/ChangeTask";
+import SetStartTask from "./actions/SetStartTask";
 
 export default class App extends Component {
 
@@ -37,45 +45,8 @@ export default class App extends Component {
 
     componentDidMount() {
 
-        let taskName = localStorage.getItem('currentTask');
-
-        if(taskName) {
-            getData(taskName, (data) => {
-                localStorage.setItem('currentTask', data.thisTask.h1);
-                this.setState({
-                    thisTask: data.thisTask,
-                    commonData: data.commonData
-                });
-                setTimeout(() => {
-                    this.setState({
-                        load: true
-                    })
-                }, 500)
-            })
-        } else {
-            setTimeout(() => {
-                this.setState({
-                    load: true
-                })
-            }, 500)
-        }
-
-        window.onbeforeunload = () => {
-            updateThisData(this.state.thisTask);
-        }
+        SetStartTask(this.state.thisTask, this.updateState)
     }
-
-    changeTask = (text) => {
-        updateThisData(this.state.thisTask);
-
-        changeTask(text, (data) => {
-            localStorage.setItem('currentTask', text);
-            this.setState({
-                thisTask: data.thisTask,
-                commonData: data.commonData
-            })
-        });
-    };
 
     updateTimer = (time) => {
         this.setState({
@@ -83,52 +54,6 @@ export default class App extends Component {
         });
 
         updateThisData(this.state.thisTask);
-    };
-
-    deleteTask = (text) => {
-        deleteTask(text,(data) => {
-            this.setState({
-                thisTask: {...data.thisTask, commonChecklist: this.state.commonData.checklist},
-                commonData: data.commonData
-            })
-        })
-    };
-
-    deleteItemTask = (text, type) => {
-        const { thisTask } = this.state;
-
-        deleteItemTask(text, type, thisTask, (data) => {
-            if(!data.commonData) {
-                this.setState({
-                    thisTask: data.thisTask
-                })
-            } else if(!data.thisTask) {
-                this.setState({
-                    commonData: data.commonData
-                })
-            } else {
-                this.setState({
-                    thisTask: data.thisTask,
-                    commonData: data.commonData
-                })
-            }
-        })
-    };
-
-    changeH1 = (text) => {
-        const { thisTask } = this.state;
-        let oldText = thisTask.h1;
-
-        let data = {...thisTask, h1: text};
-
-        localStorage.setItem('currentTask', data.h1);
-
-        updateH1(data, oldText,(data) => {
-            this.setState({
-                thisTask: data.thisTask,
-                commonData: data.commonData
-            })
-        });
     };
 
     openPopap = () => {
@@ -152,109 +77,15 @@ export default class App extends Component {
                 limit: valueLimit
             },
             popap: false
-        })
+        });
 
         setTimeout(() => {
-            this.changeH1(value);
+            ChangeH1(value, this.state.thisTask, this.updateState)
         }, 0);
 
         this.inputName.current.value = '';
         this.inputLimit.current.value = '';
 
-    };
-
-    syncData = (data) => {
-        this.setState({
-            thisTask: data.thisTask,
-            commonData: data.commonData
-        })
-    };
-
-    addNewMistake = (text) => {
-        const { thisTask, commonData } = this.state;
-
-        // Добавить ошибку
-        let data = {...thisTask, thisErrorList: [...thisTask.thisErrorList, text]};
-
-        // Добавить общую ошибку
-
-        let newDate = {};
-
-        if(!commonData.errors[text]) {
-            let data = {...commonData.errors, [text]: 1};
-            newDate = {...commonData, errors: data}
-        } else {
-            let data = {...commonData.errors, [text]: commonData.errors[text] + 1};
-            let sorted = Object.keys(data).sort(function (a, b) {
-                return data[b] - data[a]
-            });
-
-            let mewObj = {};
-            sorted.map((item) => {
-                mewObj[item] = data[item]
-            });
-
-            newDate = {...commonData, errors: mewObj}
-        }
-
-        updateThisData(data);
-        updateCommonData(newDate);
-
-        this.setState({
-            thisTask: data,
-            commonData: newDate
-        })
-    };
-
-    addNewFind = (text) => {
-        const { thisTask, commonData } = this.state;
-
-        let data = {...thisTask, thisFindList: [...thisTask.thisFindList, text]};
-
-        let newDate;
-
-        if(commonData.errors[text]) {
-            if(commonData.errors[text] === 1) {
-                delete commonData.errors[text];
-                newDate = commonData;
-            } else {
-                let errors = {...commonData.errors, [text]: commonData.errors[text] - 1};
-                let sorted = Object.keys(errors).sort(function (a, b) {
-                    return errors[b] - errors[a]
-                });
-
-                let mewObj = {};
-                sorted.map((item) => {
-                    mewObj[item] = errors[item]
-                });
-
-                newDate = {...commonData, errors: mewObj}
-            }
-
-            updateCommonData(newDate);
-
-            this.setState({
-                commonData: newDate
-            })
-        }
-
-        updateThisData(data);
-
-        this.setState({
-            thisTask: data
-        })
-    };
-
-    addLocalChecklist = (text) => {
-        const { thisTask } = this.state;
-
-        let data = {...thisTask, checklist: {...thisTask.checklist, [text]: false}};
-
-        updateThisData(data);
-
-        this.setState({
-            thisTask: data
-        })
     };
 
     updateState = (data) => {
@@ -267,21 +98,21 @@ export default class App extends Component {
         return (
             <Context.Provider value = {{
                 ...this.state,
-                addNewMistake: this.addNewMistake,
-                addNewFind: this.addNewFind,
-                addLocalChecklist: this.addLocalChecklist,
+                addNewMistake: (text) => AddNewMistake(text, thisTask, commonData, this.updateState),
+                addNewFind: (text) => AddNewFind(text, thisTask, commonData, this.updateState),
+                addLocalChecklist: (text) => AddLocalChecklist(text, thisTask, this.updateState),
                 addCommonChecklist: (text) => AddCommonChecklist(text, thisTask, commonData, this.updateState),
                 toggleChecklist: (text, id) => ToggleChecklist(text, id, thisTask, this.updateState),
-                changeH1: this.changeH1,
+                changeH1: (text) => ChangeH1(text, thisTask, this.updateState),
                 openPopap: this.openPopap,
-                changeTask: this.changeTask,
-                deleteTask: this.deleteTask,
-                deleteItemTask: this.deleteItemTask,
+                changeTask: (text) => ChangeTask(text, thisTask, this.updateState),
+                deleteTask: (text) => DeleteTask(text, this.updateState),
+                deleteItemTask: (text, type) => DeleteItemTask(text, type, thisTask, this.updateState),
                 updateTimer: this.updateTimer
             }}>
                 <div className="background" />
                 <div className="app">
-                    <Gists syncData={this.syncData} />
+                    <Gists syncData={this.updateState} />
                     <CSSTransition
                         in={this.state.load}
                         timeout={700}
@@ -354,7 +185,7 @@ export default class App extends Component {
                         </div>
                     </CSSTransition>
 
-                    {popap && <div className="popap-task__closer" onClick={this.openPopap}></div>}
+                    {popap && <div className="popap-task__closer" onClick={this.openPopap} />}
                     <Page className={`popap-task ${popap ? 'popap-task__opened' : ''}`}>
                         <h2>Создать задачу</h2>
                         <form className="form popap-task__form" onSubmit={this.createNewTask}>
@@ -365,7 +196,10 @@ export default class App extends Component {
 
                             <Ripple>
                                 { (ripples) => (
-                                    <button className="ordinar" type="submit" variant="outline-primary" style={{ position: 'relative' }}>
+                                    <button className="ordinar"
+                                            type="submit"
+                                            variant="outline-primary"
+                                            style={{ position: 'relative' }}>
                                         Создать
                                         { ripples }
                                     </button>

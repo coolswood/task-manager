@@ -44,22 +44,23 @@ export default class GistsComponent extends Component {
         gistClient.getOneById(localStorage.getItem('gistCurrent'))
             .then(response => {
                 syncData(JSON.parse(response.files.ErrorList.content), (data) => {
-                    this.props.syncData(data);
+                    this.props.syncData({
+                        thisTask: data.thisTask,
+                        commonData: data.commonData
+                    });
                     button.background = '#049823';
                     setTimeout(() => {
                         button.background = '';
                     }, 500)
                 })
-            }).catch(err => {
-            console.log(err)
-        })
+            })
     };
 
     backup = (e) => {
         let button = e.target.style;
 
         getAllData(data => {
-            this.updateGist(data)
+            this.updateGist(data);
             button.background = '#049823';
             setTimeout(() => {
                 button.background = '';
@@ -102,12 +103,10 @@ export default class GistsComponent extends Component {
 
                 if(gistList.length === 0) {
                     getAllData(fullData => {
-                        this.createGist(fullData).then(newGist => {
+                        this.createGist(fullData).then(() => {
                             this.setState({
                                 isLogin: true
                             })
-                        }).catch(error => {
-                            console.log(error, '2')
                         })
                     });
                 } else {
@@ -117,7 +116,7 @@ export default class GistsComponent extends Component {
                         isLogin: true
                     });
                 }
-        }).catch(error => {
+        }).catch(() => {
             this.setState({
                 autFailed: true
             })

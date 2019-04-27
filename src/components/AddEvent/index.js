@@ -13,7 +13,7 @@ export default class AddEvent extends Component {
         dataLength: this.props.data.length ? this.props.data.length : Object.keys(this.props.data).length
     };
 
-    static getDerivedStateFromProps(props, state) {
+    static getDerivedStateFromProps(props) {
         return {
             dataLength: props.data.length ? props.data.length : Object.keys(props.data).length
         }
@@ -27,7 +27,7 @@ export default class AddEvent extends Component {
                 {h2 && <h2>{h2}</h2>}
                 {type !== 'mistakes' && <InputForm type={type} id={id} />}
 
-                {(!data || data.length === 0) && <div></div>}
+                {(!data || data.length === 0) && <div />}
 
                 {!!data && type === 'ordinar' &&
                     <div style={this.state.dataLength > 5 ? {height: 310} : {}} className="list">
