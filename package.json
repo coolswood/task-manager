@@ -7,7 +7,7 @@
     "electron-is-dev": "^1.0.1",
     "gist-client": "^1.1.0",
     "gists": "^2.0.0",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.13.1",
     "react": "^16.8.3",
     "react-customscroll": "^4.0.6",
     "react-dom": "^16.8.3",
